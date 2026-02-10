@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Anfo Word Rush</title>
+  <title>Anfo Word Rush - Dark</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Cute energetic font -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -17,62 +17,73 @@
     }
 
     body {
-      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+      background: radial-gradient(circle at top, #2b2b3b 0, #050509 55%, #000 100%);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      color: #f5f5f5;
     }
 
     #app {
       width: 100%;
       max-width: 480px;
-      background: #ffffff;
+      background: linear-gradient(145deg, #111119, #181824);
       border-radius: 24px;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.15);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.7);
       padding: 22px;
       margin: auto;
+      border: 1px solid rgba(255,255,255,0.04);
     }
 
     h1, h2, h3 {
       text-align: center;
       margin-bottom: 12px;
+      color: #fdfdfd;
     }
 
     .logo {
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 800;
       text-align: center;
-      color: #ff6f61;
+      color: #ff6f91;
       margin-bottom: 6px;
+      letter-spacing: 0.06em;
     }
 
     .subtitle {
       text-align: center;
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 20px;
+      font-size: 13px;
+      color: #b0b0c5;
+      margin-bottom: 18px;
     }
 
     button {
       border: none;
       border-radius: 14px;
-      padding: 12px 18px;
-      font-size: 15px;
+      padding: 11px 18px;
+      font-size: 14px;
       cursor: pointer;
-      background: #ff6f61;
+      background: linear-gradient(135deg, #ff6f91, #ff9671);
       color: #fff;
       transition: 0.15s ease;
+      box-shadow: 0 6px 18px rgba(255,111,145,0.35);
     }
 
     button:hover {
-      background: #ff5a4a;
       transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(255,111,145,0.5);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 12px rgba(255,111,145,0.3);
     }
 
     .btn-secondary {
-      background: #ffe3e3;
-      color: #ff6f61;
+      background: linear-gradient(135deg, #2b2b3b, #34344a);
+      color: #ff6f91;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.6);
     }
 
     .screen { display: none; }
@@ -83,58 +94,86 @@
       justify-content: center;
       gap: 10px;
       margin-bottom: 16px;
+      flex-wrap: wrap;
     }
 
     .chip {
-      padding: 8px 14px;
-      background: #ffe8e8;
-      border-radius: 12px;
+      padding: 7px 14px;
+      background: #1f1f2b;
+      border-radius: 999px;
       cursor: pointer;
-      color: #ff6f61;
-      border: 2px solid transparent;
+      color: #c3c3e0;
+      border: 1px solid #34344a;
+      font-size: 13px;
     }
 
     .chip.selected {
-      background: #ff6f61;
+      background: linear-gradient(135deg, #ff6f91, #ff9671);
       color: #fff;
-      border-color: #ff3b2e;
+      border-color: #ff6f91;
+      box-shadow: 0 4px 14px rgba(255,111,145,0.4);
+    }
+
+    .actions-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
     }
 
     /* Learn card */
     #learn-card {
-      background: #fff4f4;
+      background: radial-gradient(circle at top, #26263a 0, #151521 60%);
       padding: 20px;
       border-radius: 18px;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 18px;
+      border: 1px solid #34344a;
     }
 
     #learn-word {
-      font-size: 30px;
+      font-size: 28px;
       font-weight: 700;
-      color: #ff6f61;
+      color: #ff6f91;
       margin-bottom: 8px;
     }
 
     #learn-meaning {
-      font-size: 20px;
-      color: #444;
+      font-size: 19px;
+      color: #f5f5f5;
       margin-bottom: 6px;
     }
 
     #learn-index {
-      font-size: 13px;
-      color: #777;
+      font-size: 12px;
+      color: #9a9ab5;
     }
 
     /* Game UI */
+    #record-label {
+      text-align: center;
+      font-size: 13px;
+      color: #ff9671;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    #stats-label {
+      text-align: center;
+      font-size: 13px;
+      color: #b0b0c5;
+      margin-bottom: 8px;
+    }
+
     #avatar-game {
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
       object-fit: contain;
-      margin: 10px auto;
+      margin: 10px auto 6px;
       display: block;
       transition: 0.2s ease;
+      filter: drop-shadow(0 10px 25px rgba(0,0,0,0.8));
     }
 
     .avatar-bounce {
@@ -150,76 +189,90 @@
 
     #game-word {
       text-align: center;
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 700;
-      color: #ff6f61;
-      margin-bottom: 16px;
+      color: #ff6f91;
+      margin-bottom: 14px;
     }
 
     #options {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 10px;
     }
 
     .option {
-      background: #fff0f0;
-      color: #ff6f61;
+      background: #1f1f2b;
+      color: #e0e0ff;
       border-radius: 14px;
-      padding: 12px;
-      font-size: 15px;
-      border: 2px solid transparent;
+      padding: 11px 8px;
+      font-size: 14px;
+      border: 1px solid #34344a;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.7);
+      transition: 0.12s ease;
+    }
+
+    .option:hover {
+      border-color: #ff6f91;
+      transform: translateY(-1px);
     }
 
     .option.correct {
-      background: #d4ffe1;
+      background: #1e3b2b;
       border-color: #2ecc71;
-      color: #1e8a4d;
+      color: #a9ffcb;
+      box-shadow: 0 4px 16px rgba(46,204,113,0.5);
     }
 
     .option.wrong {
-      background: #ffd6d6;
-      border-color: #ff3b2e;
-      color: #b00020;
+      background: #3b1e24;
+      border-color: #ff4b5c;
+      color: #ffb3c0;
+      box-shadow: 0 4px 16px rgba(255,75,92,0.5);
     }
 
     /* Timer bar */
     #timer-container {
       width: 100%;
-      height: 10px;
-      background: #ffe3e3;
+      height: 9px;
+      background: #1a1a26;
       border-radius: 999px;
-      margin: 16px 0;
+      margin: 16px 0 10px;
       overflow: hidden;
+      border: 1px solid #34344a;
     }
 
     #timer-bar {
       height: 100%;
       width: 100%;
-      background: linear-gradient(90deg, #ff6f61, #ff9f43);
+      background: linear-gradient(90deg, #ff6f91, #ff9671, #ffc75f);
       transition: width linear;
     }
 
-    /* Stats */
-    #stats-label {
-      text-align: center;
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 10px;
-    }
-
-    #record-label {
-      text-align: center;
-      font-size: 14px;
-      color: #ff6f61;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-
     /* Result */
+    #results-list {
+      margin-top: 10px;
+      list-style: none;
+      max-height: 180px;
+      overflow-y: auto;
+    }
+
     #results-list li {
       margin-bottom: 6px;
-      font-size: 14px;
+      font-size: 13px;
+      color: #e0e0ff;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      #app {
+        border-radius: 0;
+        max-width: 100%;
+        height: 100vh;
+      }
     }
   </style>
 </head>
@@ -229,7 +282,7 @@
     <!-- START SCREEN -->
     <div id="screen-start" class="screen active">
       <div class="logo">Anfo</div>
-      <div class="subtitle">Fun, fast, energetic word game</div>
+      <div class="subtitle">Dark, fast, energetic word game</div>
 
       <h3>Choose level</h3>
       <div class="chips" id="level-chips">
@@ -244,7 +297,7 @@
         <div class="chip" data-topic="travel">Travel</div>
       </div>
 
-      <div class="actions-row" style="display:flex; justify-content:center; gap:12px;">
+      <div class="actions-row">
         <button id="btn-start-learn" class="btn-secondary">Learn</button>
         <button id="btn-start-game">Play</button>
       </div>
@@ -260,7 +313,7 @@
         <div id="learn-index"></div>
       </div>
 
-      <div class="actions-row" style="margin-top:20px;">
+      <div class="actions-row">
         <button id="btn-learn-prev" class="btn-secondary">Previous</button>
         <button id="btn-learn-next">Next</button>
       </div>
@@ -276,7 +329,7 @@
       <div id="record-label">Best: 0</div>
       <div id="stats-label">Wrong 0 / 0</div>
 
-      <img id="avatar-game" src="avatar_neutral.png" />
+      <img id="avatar-game" src="avatar_neutral.png" alt="avatar" />
 
       <div id="game-word">word</div>
 
@@ -421,7 +474,7 @@
     }
 
     function shuffle(arr) {
-      return arr.sort(() => Math.random() - 0.5);
+      return arr.slice().sort(() => Math.random() - 0.5);
     }
 
     function setAvatar(mood) {
@@ -434,6 +487,12 @@
       avatarGame.classList.remove("avatar-bounce");
       void avatarGame.offsetWidth;
       avatarGame.classList.add("avatar-bounce");
+    }
+
+    function vibrate(ms) {
+      if (navigator.vibrate) {
+        navigator.vibrate(ms);
+      }
     }
 
     levelChips.addEventListener("click", e => {
@@ -454,6 +513,10 @@
 
     btnStartLearn.addEventListener("click", () => {
       const list = WORDS_DATA[currentLevel][currentTopic];
+      if (!list || !list.length) {
+        alert("No words for this level/topic yet.");
+        return;
+      }
       learnList = shuffle(list);
       learnIndex = 0;
       showLearn();
@@ -486,6 +549,11 @@
 
     btnStartGame.onclick = () => {
       const list = WORDS_DATA[currentLevel][currentTopic];
+      if (!list || !list.length) {
+        alert("No words for this level/topic yet.");
+        return;
+      }
+
       gameQuestions = shuffle(list);
       gameIndex = 0;
       wrongWords = [];
@@ -493,13 +561,12 @@
       totalCount = gameQuestions.length;
       score = 0;
 
-      bestScore = parseInt(localStorage.getItem("bestScore") || "0");
+      bestScore = parseInt(localStorage.getItem("anfo_best_dark") || "0");
       recordLabel.textContent = "Best: " + bestScore;
 
       statsLabel.textContent = `Wrong 0 / ${totalCount}`;
       setAvatar("neutral");
 
-     
       showScreen(screenGame);
       loadGameQuestion();
     };
@@ -528,6 +595,7 @@
       wrongCount++;
       statsLabel.textContent = `Wrong ${wrongCount} / ${totalCount}`;
       setAvatar("sad");
+      vibrate(120);
 
       const q = gameQuestions[gameIndex];
       wrongWords.push(q);
@@ -572,7 +640,6 @@
 
     function checkAnswer(isCorrect, wordObj, btn) {
       clearInterval(timerInterval);
-
       optionButtons.forEach(b => b.disabled = true);
 
       if (isCorrect) {
@@ -585,6 +652,7 @@
         wrongWords.push(wordObj);
         btn.classList.add("wrong");
         setAvatar("sad");
+        vibrate(150);
       }
 
       statsLabel.textContent = `Wrong ${wrongCount} / ${totalCount}`;
@@ -602,7 +670,7 @@
 
       if (score > bestScore) {
         bestScore = score;
-        localStorage.setItem("bestScore", bestScore);
+        localStorage.setItem("anfo_best_dark", bestScore);
       }
 
       finalBestLabel.textContent = bestScore;
@@ -610,8 +678,8 @@
       finalTotalLabel.textContent = totalCount;
 
       resultsList.innerHTML = "";
-      if (wrongWords.length === 0) {
-        resultsList.innerHTML = "<li>No wrong words! 🎉</li>";
+      if (!wrongWords.length) {
+        resultsList.innerHTML = "<li>No wrong words. Perfect run! 🎉</li>";
       } else {
         wrongWords.forEach(w => {
           const li = document.createElement("li");
@@ -648,6 +716,11 @@
 
     btnPlayAgain.onclick = () => {
       const list = WORDS_DATA[currentLevel][currentTopic];
+      if (!list || !list.length) {
+        alert("No words for this level/topic yet.");
+        return;
+      }
+
       gameQuestions = shuffle(list);
       wrongWords = [];
       wrongCount = 0;
