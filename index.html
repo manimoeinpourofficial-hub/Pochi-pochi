@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Anfo Word Rush</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #fdfbfb, #ebedee);
+      color: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #app {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 16px 16px 24px;
+    }
+
+    h1, h2, h3 {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 8px;
+      color: #ff7a59;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 16px;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      background: #ff7a59;
+      color: #fff;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
+    }
+
+    button:hover {
+      background: #ff6a45;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      background: #f0f0f0;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background: #e4e4e4;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    .section {
+      margin-bottom: 16px;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .chip {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #f5f5f5;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .chip.selected {
+      background: #ff7a59;
+      color: #fff;
+    }
+
+    /* Top bar */
+    #top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    #timer {
+      background: #ffe4dc;
+      color: #ff7a59;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    #score {
+      font-weight: 600;
+    }
+
+    #profile-mini {
+      font-size: 11px;
+      color: #666;
+    }
+
+    /* Avatar */
+    #avatar-container {
+      display: flex;
+      justify-content: center;
+      margin: 8px 0 12px;
+    }
+
+    #avatar {
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+
+    .avatar-bounce {
+      animation: bounce 0.4s ease;
+    }
+
+    @keyframes bounce {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.1); }
+      60% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+
+    /* Learn card */
+    #learn-card {
+      background: #f9fafb;
+      border-radius: 16px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    #lesson-img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      margin-bottom: 8px;
+    }
+
+    #lesson-word {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    #lesson-meaning {
+      font-size: 15px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    #lesson-sentence {
+      font-size: 13px;
+      color: #777;
+      margin-bottom: 8px;
+    }
+
+    .learn-actions {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Challenge */
+    #challenge-word {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 700;
+      margin: 8px 0 12px;
+    }
+
+    #options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .option {
+      width: 100%;
+      text-align: center;
+      font-size: 13px;
+      padding: 10px 6px;
+      background: #f5f5f5;
+      color: #333;
+      border-radius: 12px;
+    }
+
+    .option.correct {
+      background: #d4f8d4;
+      color: #1b7a1b;
+    }
+
+    .option.wrong {
+      background: #ffd6d6;
+      color: #b00020;
+    }
+
+    /* Result screen */
+    #results-list {
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    #results-list li {
+      margin-bottom: 4px;
+    }
+
+    .actions-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Profile */
+    #profile-box {
+      background: #f9fafb;
+      border-radius: 12px;
+      padding: 8px 10px;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    #profile-box div {
+      margin-bottom: 2px;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      #app {
+        border-radius: 0;
+        max-width: 100%;
+        height: 100vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- صفحه شروع -->
+    <div id="screen-start" class="screen active">
+      <div class="logo">Anfo</div>
+      <div class="subtitle">بازی آموزش زبان با کاراکتر گوگولی</div>
+
+      <div id="profile-box">
+        <div><strong>پروفایل:</strong> <span id="profile-name-label">مهمان</span></div>
+        <div>بیشترین امتیاز: <span id="profile-best-score">0</span></div>
+        <div>کل بازی‌ها: <span id="profile-total-games">0</span></div>
+      </div>
+
+      <div class="section center">
+        <h3>انتخاب سطح</h3>
+        <div class="chips" id="level-chips">
+          <div class="chip selected" data-level="beginner">مبتدی</div>
+          <div class="chip" data-level="intermediate">متوسط</div>
+        </div>
+      </div>
+
+      <div class="section center">
+        <h3>انتخاب موضوع</h3>
+        <div class="chips" id="topic-chips">
+          <div class="chip selected" data-topic="daily">روزمره</div>
+          <div class="chip" data-topic="food">غذا</div>
+          <div class="chip" data-topic="travel">سفر</div>
+        </div>
+      </div>
+
+      <div class="section center">
+        <button id="btn-start-learn">شروع آموزش</button>
+      </div>
+
+      <div class="section center">
+        <button class="btn-secondary" id="btn-edit-name">ویرایش نام پروفایل</button>
+      </div>
+    </div>
+
+    <!-- صفحه آموزش -->
+    <div id="screen-learn" class="screen">
+      <div id="top-bar">
+        <span id="score-learn">آموزش</span>
+        <span id="profile-mini"></span>
+      </div>
+
+      <div id="avatar-container">
+        <img id="avatar" src="avatar_neutral.png" alt="avatar" />
+      </div>
+
+      <div id="learn-card">
+        <img id="lesson-img" src="" alt="lesson image" />
+        <div id="lesson-word"></div>
+        <div id="lesson-meaning"></div>
+        <div id="lesson-sentence"></div>
+        <div class="learn-actions">
+          <button id="btn-play-audio">پخش تلفظ</button>
+          <button class="btn-secondary" id="btn-next-lesson">بعدی</button>
+        </div>
+      </div>
+
+      <div class="actions-row">
+        <button id="btn-go-challenge" style="display:none;">برو به چالش 🔥</button>
+        <button class="btn-secondary" id="btn-back-start">بازگشت</button>
+      </div>
+    </div>
+
+    <!-- صفحه چالش -->
+    <div id="screen-challenge" class="screen">
+      <div id="top-bar">
+        <span id="score">امتیاز: 0</span>
+        <span id="timer">۶</span>
+      </div>
+
+      <div id="avatar-container">
+        <img id="avatar-challenge" src="avatar_neutral.png" alt="avatar" />
+      </div>
+
+      <div id="challenge-word">کلمه</div>
+
+      <div id="options">
+        <button class="option"></button>
+        <button class="option"></button>
+        <button class="option"></button>
+        <button class="option"></button>
+      </div>
+
+      <div class="actions-row">
+        <button class="btn-secondary" id="btn-exit-challenge">خروج</button>
+      </div>
+    </div>
+
+    <!-- صفحه نتیجه -->
+    <div id="screen-result" class="screen">
+      <h2>نتیجه مرحله</h2>
+      <div class="center" style="margin-top:8px;">
+        <div>امتیاز نهایی: <strong id="final-score">0</strong></div>
+        <div>دقت: <strong id="final-accuracy">0%</strong></div>
+      </div>
+
+      <div class="section">
+        <h3 style="font-size:14px; margin-bottom:4px;">کلمات اشتباه</h3>
+        <ul id="results-list"></ul>
+      </div>
+
+      <div class="actions-row">
+        <button id="btn-repeat-wrong">تکرار اشتباه‌ها 🔁</button>
+        <button class="btn-secondary" id="btn-play-again">بازی دوباره</button>
+        <button class="btn-secondary" id="btn-back-home">بازگشت به خانه</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- صداها (فایل‌ها رو خودت اضافه کن) -->
+  <audio id="sfx-correct" src="sfx_correct.mp3"></audio>
+  <audio id="sfx-wrong" src="sfx_wrong.mp3"></audio>
+  <audio id="sfx-click" src="sfx_click.mp3"></audio>
+
+  <script>
+    // -----------------------------
+    // داده‌ها: درس‌ها بر اساس سطح و موضوع
+    // -----------------------------
+    const lessonsData = {
+      beginner: {
+        daily: [
+          {
+            word: "hello",
+            meaning: "سلام",
+            sentence: "Hello, how are you?",
+            image: "img_hello.png",
+            audio: "hello.mp3"
+          },
+          {
+            word: "thanks",
+            meaning: "متشکرم",
+            sentence: "Thanks for your help.",
+            image: "img_thanks.png",
+            audio: "thanks.mp3"
+          },
+          {
+            word: "sorry",
+            meaning: "ببخشید",
+            sentence: "I am sorry for being late.",
+            image: "img_sorry.png",
+            audio: "sorry.mp3"
+          },
+          {
+            word: "yes",
+            meaning: "بله",
+            sentence: "Yes, I agree with you.",
+            image: "img_yes.png",
+            audio: "yes.mp3"
+          },
+          {
+            word: "no",
+            meaning: "نه",
+            sentence: "No, I don't want it.",
+            image: "img_no.png",
+            audio: "no.mp3"
+          }
+        ],
+        food: [
+          {
+            word: "apple",
+            meaning: "سیب",
+            sentence: "I eat an apple every morning.",
+            image: "img_apple.png",
+            audio: "apple.mp3"
+          },
+          {
+            word: "bread",
+            meaning: "نان",
+            sentence: "I like fresh bread.",
+            image: "img_bread.png",
+            audio: "bread.mp3"
+          }
+        ],
+        travel: [
+          {
+            word: "ticket",
+            meaning: "بلیت",
+            sentence: "I bought a ticket to Paris.",
+            image: "img_ticket.png",
+            audio: "ticket.mp3"
+          }
+        ]
+      },
+      intermediate: {
+        daily: [
+          {
+            word: "schedule",
+            meaning: "برنامه‌ریزی",
+            sentence: "I have a busy schedule this week.",
+            image: "img_schedule.png",
+            audio: "schedule.mp3"
+          }
+        ],
+        food: [
+          {
+            word: "ingredient",
+            meaning: "مواد اولیه",
+            sentence: "We need fresh ingredients for this recipe.",
+            image: "img_ingredient.png",
+            audio: "ingredient.mp3"
+          }
+        ],
+        travel: [
+          {
+            word: "destination",
+            meaning: "مقصد",
+            sentence: "Our destination is a small island.",
+            image: "img_destination.png",
+            audio: "destination.mp3"
+          }
+        ]
+      }
+    };
+
+    // -----------------------------
+    // وضعیت کلی بازی
+    // -----------------------------
+    let currentLevel = "beginner";
+    let currentTopic = "daily";
+    let lessons = [];
+    let currentLessonIndex = 0;
+
+    let questions = [];
+    let currentQuestionIndex = 0;
+    let wrongWords = [];
+    let score = 0;
+    let totalQuestions = 0;
+    let correctAnswers = 0;
+    let timerInterval = null;
+    let timePerQuestion = 6;
+
+    // پروفایل
+    let profile = {
+      name: "مهمان",
+      bestScore: 0,
+      totalGames: 0
+    };
+
+    // -----------------------------
+    // المان‌ها
+    // -----------------------------
+    const screenStart = document.getElementById("screen-start");
+    const screenLearn = document.getElementById("screen-learn");
+    const screenChallenge = document.getElementById("screen-challenge");
+    const screenResult = document.getElementById("screen-result");
+
+    const levelChips = document.getElementById("level-chips");
+    const topicChips = document.getElementById("topic-chips");
+
+    const btnStartLearn = document.getElementById("btn-start-learn");
+    const btnEditName = document.getElementById("btn-edit-name");
+
+    const profileNameLabel = document.getElementById("profile-name-label");
+    const profileBestScore = document.getElementById("profile-best-score");
+    const profileTotalGames = document.getElementById("profile-total-games");
+    const profileMini = document.getElementById("profile-mini");
+
+    const lessonImg = document.getElementById("lesson-img");
+    const lessonWord = document.getElementById("lesson-word");
+    const lessonMeaning = document.getElementById("lesson-meaning");
+    const lessonSentence = document.getElementById("lesson-sentence");
+    const btnPlayAudio = document.getElementById("btn-play-audio");
+    const btnNextLesson = document.getElementById("btn-next-lesson");
+    const btnGoChallenge = document.getElementById("btn-go-challenge");
+    const btnBackStart = document.getElementById("btn-back-start");
+
+    const avatarLearn = document.getElementById("avatar");
+    const avatarChallenge = document.getElementById("avatar-challenge");
+
+    const scoreLabel = document.getElementById("score");
+    const timerLabel = document.getElementById("timer");
+    const challengeWord = document.getElementById("challenge-word");
+    const optionButtons = document.querySelectorAll(".option");
+    const btnExitChallenge = document.getElementById("btn-exit-challenge");
+
+    const finalScoreLabel = document.getElementById("final-score");
+    const finalAccuracyLabel = document.getElementById("final-accuracy");
+    const resultsList = document.getElementById("results-list");
+    const btnRepeatWrong = document.getElementById("btn-repeat-wrong");
+    const btnPlayAgain = document.getElementById("btn-play-again");
+    const btnBackHome = document.getElementById("btn-back-home");
+
+    const sfxCorrect = document.getElementById("sfx-correct");
+    const sfxWrong = document.getElementById("sfx-wrong");
+    const sfxClick = document.getElementById("sfx-click");
+
+    // -----------------------------
+    // توابع کمکی
+    // -----------------------------
+    function showScreen(screen) {
+      [screenStart, screenLearn, screenChallenge, screenResult].forEach(s => s.classList.remove("active"));
+      screen.classList.add("active");
+    }
+
+    function playSfx(audioEl) {
+      if (!audioEl) return;
+      audioEl.currentTime = 0;
+      audioEl.play().catch(() => {});
+    }
+
+    function setAvatarMood(targetImg, mood) {
+      let src = "avatar_neutral.png";
+      if (mood === "sad") src = "avatar_sad.png";
+      else if (mood === "happy") src = "avatar_happy.png";
+      else if (mood === "super-happy") src = "avatar_super_happy.png";
+
+      targetImg.src = src;
+      targetImg.classList.remove("avatar-bounce");
+      void targetImg.offsetWidth;
+      targetImg.classList.add("avatar-bounce");
+    }
+
+    function loadProfile() {
+      const saved = localStorage.getItem("anfo_profile");
+      if (saved) {
+        profile = JSON.parse(saved);
+      }
+      profileNameLabel.textContent = profile.name;
+      profileBestScore.textContent = profile.bestScore;
+      profileTotalGames.textContent = profile.totalGames;
+      profileMini.textContent = profile.name + " | Best: " + profile.bestScore;
+    }
+
+    function saveProfile() {
+      localStorage.setItem("anfo_profile", JSON.stringify(profile));
+      loadProfile();
+    }
+
+    // -----------------------------
+    // انتخاب سطح و موضوع
+    // -----------------------------
+    levelChips.addEventListener("click", (e) => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      levelChips.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
+      chip.classList.add("selected");
+      currentLevel = chip.dataset.level;
+      playSfx(sfxClick);
+    });
+
+    topicChips.addEventListener("click", (e) => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      topicChips.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
+      chip.classList.add("selected");
+      currentTopic = chip.dataset.topic;
+      playSfx(sfxClick);
+    });
+
+    // -----------------------------
+    // شروع آموزش
+    // -----------------------------
+    btnStartLearn.addEventListener("click", () => {
+      playSfx(sfxClick);
+      lessons = (lessonsData[currentLevel] && lessonsData[currentLevel][currentTopic]) || [];
+      if (!lessons.length) {
+        alert("برای این سطح و موضوع هنوز درسی تعریف نشده.");
+        return;
+      }
+      currentLessonIndex = 0;
+      showScreen(screenLearn);
+      setAvatarMood(avatarLearn, "neutral");
+      showLesson();
+    });
+
+    btnBackStart.addEventListener("click", () => {
+      playSfx(sfxClick);
+      showScreen(screenStart);
+    });
+
+    function showLesson() {
+      const l = lessons[currentLessonIndex];
+      lessonImg.src = l.image || "placeholder.png";
+      lessonWord.textContent = l.word;
+      lessonMeaning.textContent = l.meaning;
+      lessonSentence.textContent = l.sentence;
+      btnGoChallenge.style.display = (currentLessonIndex >= lessons.length - 1) ? "inline-block" : "none";
+    }
+
+    btnNextLesson.addEventListener("click", () => {
+      playSfx(sfxClick);
+      if (currentLessonIndex < lessons.length - 1) {
+        currentLessonIndex++;
+        showLesson();
+      } else {
+        btnGoChallenge.style.display = "inline-block";
+        setAvatarMood(avatarLearn, "happy");
+      }
+    });
+
+    btnPlayAudio.addEventListener("click", () => {
+      playSfx(sfxClick);
+      const l = lessons[currentLessonIndex];
+      if (!l.audio) return;
+      const audio = new Audio(l.audio);
+      audio.play().catch(() => {});
+    });
+
+    btnGoChallenge.addEventListener("click", () => {
+      playSfx(sfxClick);
+      startChallenge(false);
+    });
+
+    // -----------------------------
+    // چالش
+    // -----------------------------
+    function startChallenge(fromWrongOnly) {
+      showScreen(screenChallenge);
+      setAvatarMood(avatarChallenge, "neutral");
+      score = 0;
+      correctAnswers = 0;
+
+      if (fromWrongOnly && wrongWords.length) {
+        questions = [...wrongWords];
+        wrongWords = [];
+      } else {
+        questions = [...lessons];
+        wrongWords = [];
+      }
+
+      totalQuestions = questions.length;
+      currentQuestionIndex = 0;
+      updateScoreLabel();
+      loadQuestion();
+    }
+
+    function updateScoreLabel() {
+      scoreLabel.textContent = "امتیاز: " + score;
+    }
+
+    function loadQuestion() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+
+      if (currentQuestionIndex >= questions.length) {
+        endChallenge();
+        return;
+      }
+
+      const q = questions[currentQuestionIndex];
+      challengeWord.textContent = q.word;
+
+      let options = [q.meaning];
+      while (options.length < 4 && lessons.length > 1) {
+        let random = lessons[Math.floor(Math.random() * lessons.length)].meaning;
+        if (!options.includes(random)) options.push(random);
+      }
+      while (options.length < 4) {
+        options.push("—");
+      }
+
+      options.sort(() => Math.random() - 0.5);
+
+      optionButtons.forEach((btn, i) => {
+        btn.disabled = false;
+        btn.classList.remove("correct", "wrong");
+        btn.textContent = options[i];
+        btn.onclick = () => checkAnswer(options[i] === q.meaning, q, btn);
+      });
+
+      startTimer();
+    }
+
+    function startTimer() {
+      let timeLeft = timePerQuestion;
+      timerLabel.textContent = timeLeft;
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerLabel.textContent = timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          handleTimeout();
+        }
+      }, 1000);
+    }
+
+    function handleTimeout() {
+      const q = questions[currentQuestionIndex];
+      wrongWords.push(q);
+      setAvatarMood(avatarChallenge, "sad");
+      playSfx(sfxWrong);
+      optionButtons.forEach(btn => btn.disabled = true);
+      setTimeout(() => {
+        currentQuestionIndex++;
+        loadQuestion();
+      }, 700);
+    }
+
+    function checkAnswer(isCorrect, wordObj, btn) {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+
+      optionButtons.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        score += 10;
+        correctAnswers++;
+        btn.classList.add("correct");
+        setAvatarMood(avatarChallenge, "happy");
+        playSfx(sfxCorrect);
+      } else {
+        score -= 5;
+        wrongWords.push(wordObj);
+        btn.classList.add("wrong");
+        setAvatarMood(avatarChallenge, "sad");
+        playSfx(sfxWrong);
+      }
+
+      updateScoreLabel();
+
+      setTimeout(() => {
+        currentQuestionIndex++;
+        loadQuestion();
+      }, 700);
+    }
+
+    function endChallenge() {
+      showScreen(screenResult);
+      finalScoreLabel.textContent = score;
+
+      const accuracy = totalQuestions ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
+      finalAccuracyLabel.textContent = accuracy + "%";
+
+      resultsList.innerHTML = "";
+      if (!wrongWords.length) {
+        const li = document.createElement("li");
+        li.textContent = "هیچ کلمه‌ای را اشتباه نزدی! 👏";
+        resultsList.appendChild(li);
+      } else {
+        wrongWords.forEach(w => {
+          const li = document.createElement("li");
+          li.textContent = w.word + " = " + w.meaning;
+          resultsList.appendChild(li);
+        });
+      }
+
+      profile.totalGames += 1;
+      if (score > profile.bestScore) {
+        profile.bestScore = score;
+      }
+      saveProfile();
+    }
+
+    btnExitChallenge.addEventListener("click", () => {
+      playSfx(sfxClick);
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      showScreen(screenStart);
+    });
+
+    btnRepeatWrong.addEventListener("click", () => {
+      playSfx(sfxClick);
+      if (!wrongWords.length) {
+        alert("کلمه اشتباهی برای تکرار وجود ندارد.");
+        return;
+      }
+      startChallenge(true);
+    });
+
+    btnPlayAgain.addEventListener("click", () => {
+      playSfx(sfxClick);
+      startChallenge(false);
+    });
+
+    btnBackHome.addEventListener("click", () => {
+      playSfx(sfxClick);
+      showScreen(screenStart);
+    });
+
+    // -----------------------------
+    // پروفایل
+    // -----------------------------
+    btnEditName.addEventListener("click", () => {
+      playSfx(sfxClick);
+      const newName = prompt("نام پروفایل را وارد کن:", profile.name);
+      if (newName && newName.trim()) {
+        profile.name = newName.trim();
+        saveProfile();
+      }
+    });
+
+    // -----------------------------
+    // شروع
+    // -----------------------------
+    loadProfile();
+  </script>
+</body>
+</html>
