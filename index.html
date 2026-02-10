@@ -128,27 +128,74 @@
       border-color: #ff9fbf;
     }
 
-    /* Top bar */
-    #top-bar {
+    .actions-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Learn screen */
+    #learn-card {
+      background: #fff7fb;
+      border-radius: 18px;
+      padding: 20px 16px;
+      text-align: center;
+      border: 1px solid #ffe0f2;
+      margin-top: 10px;
+    }
+
+    #learn-word {
+      font-size: 26px;
+      font-weight: 700;
+      color: #ff7a7a;
+      margin-bottom: 8px;
+    }
+
+    #learn-meaning {
+      font-size: 18px;
+      color: #555;
+      margin-bottom: 6px;
+    }
+
+    #learn-index {
+      font-size: 12px;
+      color: #999;
+      margin-top: 6px;
+    }
+
+    /* Game top bar */
+    #game-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       font-size: 12px;
     }
 
-    #progress-container {
-      flex: 1;
-      margin: 0 8px;
-      background: #f7e9ff;
-      border-radius: 999px;
-      height: 10px;
-      overflow: hidden;
-      position: relative;
+    #record-label {
+      font-weight: 600;
+      color: #ff7a7a;
     }
 
-    #progress-bar,
-    #progress-bar-challenge {
+    #stats-label {
+      font-size: 12px;
+      color: #8a7bb8;
+    }
+
+    /* Combo bar */
+    #combo-container {
+      margin: 6px 0 12px;
+      background: #f7e9ff;
+      border-radius: 999px;
+      height: 12px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid transparent;
+    }
+
+    #combo-bar {
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, #ff9fbf, #ffc15e);
@@ -156,32 +203,26 @@
       transition: width 0.25s ease;
     }
 
-    #progress-label {
-      font-size: 11px;
-      color: #8a7bb8;
-      min-width: 70px;
-      text-align: right;
+    #combo-container.hollow {
+      background: #fff;
+      border-color: #f0d7ff;
     }
 
-    #timer {
-      background: #ffe4dc;
-      color: #ff7a59;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-weight: 600;
-      min-width: 40px;
-      text-align: center;
+    #combo-label {
+      font-size: 11px;
+      color: #8a7bb8;
+      text-align: right;
+      margin-bottom: 4px;
     }
 
     /* Avatar */
     #avatar-container {
       display: flex;
       justify-content: center;
-      margin: 10px 0 14px;
+      margin: 6px 0 10px;
     }
 
-    #avatar-learn,
-    #avatar-challenge {
+    #avatar-game {
       width: 96px;
       height: 96px;
       object-fit: contain;
@@ -199,53 +240,10 @@
       100% { transform: scale(1); }
     }
 
-    /* Learn card */
-    #learn-card {
-      background: #fff7fb;
-      border-radius: 18px;
-      padding: 14px;
+    /* Game word & options */
+    #game-word {
       text-align: center;
-      border: 1px solid #ffe0f2;
-    }
-
-    #lesson-img {
-      width: 120px;
-      height: 120px;
-      object-fit: contain;
-      margin-bottom: 8px;
-    }
-
-    #lesson-word {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 4px;
-      color: #ff7a7a;
-    }
-
-    #lesson-meaning {
-      font-size: 15px;
-      color: #555;
-      margin-bottom: 6px;
-    }
-
-    #lesson-sentence {
-      font-size: 13px;
-      color: #777;
-      margin-bottom: 8px;
-    }
-
-    .learn-actions {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 8px;
-      flex-wrap: wrap;
-    }
-
-    /* Challenge */
-    #challenge-word {
-      text-align: center;
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 700;
       margin: 8px 0 12px;
       color: #ff7a7a;
@@ -291,15 +289,17 @@
       margin-bottom: 4px;
     }
 
-    .actions-row {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 12px;
-      flex-wrap: wrap;
+    /* Inputs (if needed later) */
+    .input {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid #ffd6e8;
+      background: #fff7fb;
+      font-size: 14px;
+      margin-bottom: 6px;
     }
 
-    /* Responsive */
     @media (max-width: 480px) {
       #app {
         border-radius: 0;
@@ -333,57 +333,47 @@
         </div>
       </div>
 
-      <div class="section center">
-        <button id="btn-start-learn">Start learning</button>
+      <div class="actions-row">
+        <button id="btn-start-learn" class="btn-secondary">Learn</button>
+        <button id="btn-start-game">Play</button>
       </div>
     </div>
 
     <!-- LEARN SCREEN -->
     <div id="screen-learn" class="screen">
-      <div id="top-bar">
-        <span style="font-size:12px; color:#8a7bb8;">Learn mode</span>
-        <div id="progress-container">
-          <div id="progress-bar"></div>
-        </div>
-        <span id="progress-label">0 / 0</span>
-      </div>
-
-      <div id="avatar-container">
-        <img id="avatar-learn" src="avatar_neutral.png" alt="avatar" />
-      </div>
-
+      <h2>Learn words</h2>
       <div id="learn-card">
-        <img id="lesson-img" src="" alt="lesson image" />
-        <div id="lesson-word"></div>
-        <div id="lesson-meaning"></div>
-        <div id="lesson-sentence"></div>
-        <div class="learn-actions">
-          <button id="btn-play-audio">Play audio</button>
-          <button class="btn-secondary" id="btn-next-lesson">Next</button>
-        </div>
+        <div id="learn-word"></div>
+        <div id="learn-meaning"></div>
+        <div id="learn-index"></div>
       </div>
-
       <div class="actions-row">
-        <button id="btn-go-challenge" style="display:none;">Go to challenge 🔥</button>
-        <button class="btn-secondary" id="btn-back-start">Back</button>
+        <button id="btn-learn-prev" class="btn-secondary">Previous</button>
+        <button id="btn-learn-next">Next</button>
+      </div>
+      <div class="actions-row">
+        <button id="btn-learn-random" class="btn-secondary">Random</button>
+        <button id="btn-learn-back" class="btn-secondary">Back</button>
       </div>
     </div>
 
-    <!-- CHALLENGE SCREEN -->
-    <div id="screen-challenge" class="screen">
-      <div id="top-bar">
-        <span style="font-size:12px; color:#8a7bb8;">Challenge</span>
-        <div id="progress-container">
-          <div id="progress-bar-challenge"></div>
-        </div>
-        <span id="timer">6</span>
+    <!-- GAME SCREEN -->
+    <div id="screen-game" class="screen">
+      <div id="game-top">
+        <span id="record-label">Best: 0</span>
+        <span id="stats-label">Wrong 0 / 0</span>
+      </div>
+
+      <div id="combo-label">Combo: 0</div>
+      <div id="combo-container">
+        <div id="combo-bar"></div>
       </div>
 
       <div id="avatar-container">
-        <img id="avatar-challenge" src="avatar_neutral.png" alt="avatar" />
+        <img id="avatar-game" src="avatar_neutral.png" alt="avatar" />
       </div>
 
-      <div id="challenge-word">word</div>
+      <div id="game-word">word</div>
 
       <div id="options">
         <button class="option"></button>
@@ -393,7 +383,7 @@
       </div>
 
       <div class="actions-row">
-        <button class="btn-secondary" id="btn-exit-challenge">Exit</button>
+        <button id="btn-exit-game" class="btn-secondary">Exit</button>
       </div>
     </div>
 
@@ -402,7 +392,8 @@
       <h2>Stage result</h2>
       <div class="center" style="margin-top:8px;">
         <div>Score: <strong id="final-score">0</strong></div>
-        <div>Accuracy: <strong id="final-accuracy">0%</strong></div>
+        <div>Best: <strong id="final-best">0</strong></div>
+        <div>Wrong: <strong id="final-wrong">0</strong> / <strong id="final-total">0</strong></div>
       </div>
 
       <div class="section">
@@ -423,7 +414,7 @@
   <audio id="sfx-wrong" src="sfx_wrong.mp3"></audio>
   <audio id="sfx-click" src="sfx_click.mp3"></audio>
 
-  <!-- 🔹 WORDS_DATA مستقیم اینجاست -->
+  <!-- DATA -->
   <script>
     const WORDS_DATA = {
       beginner: {
@@ -542,59 +533,57 @@
   </script>
 
   <script>
-    // -----------------------------
-    // State
-    // -----------------------------
+    // STATE
     let currentLevel = "beginner";
     let currentTopic = "daily";
-    let lessons = [];
-    let currentLessonIndex = 0;
 
-    let questions = [];
-    let currentQuestionIndex = 0;
+    let learnList = [];
+    let learnIndex = 0;
+
+    let gameQuestions = [];
+    let gameIndex = 0;
     let wrongWords = [];
     let score = 0;
-    let totalQuestions = 0;
-    let correctAnswers = 0;
-    let timerInterval = null;
-    const timePerQuestion = 6;
+    let bestScore = 0;
+    let wrongCount = 0;
+    let totalCount = 0;
+    let combo = 0;
+    const maxComboForFullBar = 5;
 
-    // -----------------------------
-    // Elements
-    // -----------------------------
+    // ELEMENTS
     const screenStart = document.getElementById("screen-start");
     const screenLearn = document.getElementById("screen-learn");
-    const screenChallenge = document.getElementById("screen-challenge");
+    const screenGame = document.getElementById("screen-game");
     const screenResult = document.getElementById("screen-result");
 
     const levelChips = document.getElementById("level-chips");
     const topicChips = document.getElementById("topic-chips");
 
     const btnStartLearn = document.getElementById("btn-start-learn");
+    const btnStartGame = document.getElementById("btn-start-game");
 
-    const progressBarLearn = document.getElementById("progress-bar");
-    const progressLabelLearn = document.getElementById("progress-label");
+    const learnWordEl = document.getElementById("learn-word");
+    const learnMeaningEl = document.getElementById("learn-meaning");
+    const learnIndexEl = document.getElementById("learn-index");
+    const btnLearnPrev = document.getElementById("btn-learn-prev");
+    const btnLearnNext = document.getElementById("btn-learn-next");
+    const btnLearnRandom = document.getElementById("btn-learn-random");
+    const btnLearnBack = document.getElementById("btn-learn-back");
 
-    const lessonImg = document.getElementById("lesson-img");
-    const lessonWord = document.getElementById("lesson-word");
-    const lessonMeaning = document.getElementById("lesson-meaning");
-    const lessonSentence = document.getElementById("lesson-sentence");
-    const btnPlayAudio = document.getElementById("btn-play-audio");
-    const btnNextLesson = document.getElementById("btn-next-lesson");
-    const btnGoChallenge = document.getElementById("btn-go-challenge");
-    const btnBackStart = document.getElementById("btn-back-start");
-
-    const avatarLearn = document.getElementById("avatar-learn");
-    const avatarChallenge = document.getElementById("avatar-challenge");
-
-    const progressBarChallenge = document.getElementById("progress-bar-challenge");
-    const timerLabel = document.getElementById("timer");
-    const challengeWord = document.getElementById("challenge-word");
+    const recordLabel = document.getElementById("record-label");
+    const statsLabel = document.getElementById("stats-label");
+    const comboLabel = document.getElementById("combo-label");
+    const comboContainer = document.getElementById("combo-container");
+    const comboBar = document.getElementById("combo-bar");
+    const avatarGame = document.getElementById("avatar-game");
+    const gameWordEl = document.getElementById("game-word");
     const optionButtons = document.querySelectorAll(".option");
-    const btnExitChallenge = document.getElementById("btn-exit-challenge");
+    const btnExitGame = document.getElementById("btn-exit-game");
 
     const finalScoreLabel = document.getElementById("final-score");
-    const finalAccuracyLabel = document.getElementById("final-accuracy");
+    const finalBestLabel = document.getElementById("final-best");
+    const finalWrongLabel = document.getElementById("final-wrong");
+    const finalTotalLabel = document.getElementById("final-total");
     const resultsList = document.getElementById("results-list");
     const btnRepeatWrong = document.getElementById("btn-repeat-wrong");
     const btnPlayAgain = document.getElementById("btn-play-again");
@@ -604,11 +593,9 @@
     const sfxWrong = document.getElementById("sfx-wrong");
     const sfxClick = document.getElementById("sfx-click");
 
-    // -----------------------------
-    // Helpers
-    // -----------------------------
+    // HELPERS
     function showScreen(screen) {
-      [screenStart, screenLearn, screenChallenge, screenResult].forEach(s => s.classList.remove("active"));
+      [screenStart, screenLearn, screenGame, screenResult].forEach(s => s.classList.remove("active"));
       screen.classList.add("active");
     }
 
@@ -618,36 +605,49 @@
       audioEl.play().catch(() => {});
     }
 
-    function setAvatarMood(targetImg, mood) {
+    function shuffleArray(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function setAvatarMood(mood) {
       let src = "avatar_neutral.png";
       if (mood === "sad") src = "avatar_sad.png";
       else if (mood === "happy") src = "avatar_happy.png";
       else if (mood === "super-happy") src = "avatar_super_happy.png";
 
-      targetImg.src = src;
-      targetImg.classList.remove("avatar-bounce");
-      void targetImg.offsetWidth;
-      targetImg.classList.add("avatar-bounce");
+      avatarGame.src = src;
+      avatarGame.classList.remove("avatar-bounce");
+      void avatarGame.offsetWidth;
+      avatarGame.classList.add("avatar-bounce");
     }
 
-    function updateLearnProgress() {
-      const total = lessons.length || 1;
-      const current = currentLessonIndex + 1;
-      const percent = (current / total) * 100;
-      progressBarLearn.style.width = percent + "%";
-      progressLabelLearn.textContent = current + " / " + total;
+    function updateComboBar() {
+      const ratio = Math.min(combo / maxComboForFullBar, 1);
+      comboBar.style.width = (ratio * 100) + "%";
+      comboLabel.textContent = "Combo: " + combo;
+      if (combo === 0) {
+        comboContainer.classList.add("hollow");
+      } else {
+        comboContainer.classList.remove("hollow");
+      }
     }
 
-    function updateChallengeProgress() {
-      const total = totalQuestions || 1;
-      const current = currentQuestionIndex;
-      const percent = (current / total) * 100;
-      progressBarChallenge.style.width = percent + "%";
+    function loadBestScore() {
+      const saved = localStorage.getItem("anfo_best_score");
+      bestScore = saved ? parseInt(saved, 10) : 0;
+      recordLabel.textContent = "Best: " + bestScore;
     }
 
-    // -----------------------------
-    // Level & topic selection
-    // -----------------------------
+    function saveBestScore() {
+      localStorage.setItem("anfo_best_score", bestScore.toString());
+    }
+
+    // LEVEL & TOPIC
     levelChips.addEventListener("click", (e) => {
       const chip = e.target.closest(".chip");
       if (!chip) return;
@@ -666,111 +666,101 @@
       playSfx(sfxClick);
     });
 
-    // -----------------------------
-    // Start learning
-    // -----------------------------
+    // LEARN MODE
     btnStartLearn.addEventListener("click", () => {
       playSfx(sfxClick);
       const levelData = WORDS_DATA[currentLevel] || {};
-      lessons = levelData[currentTopic] || [];
-      if (!lessons.length) {
+      const list = levelData[currentTopic] || [];
+      if (!list.length) {
         alert("No words for this level/topic yet.");
         return;
       }
-      currentLessonIndex = 0;
+      learnList = shuffleArray(list); // رندوم هوشمندانه
+      learnIndex = 0;
       showScreen(screenLearn);
-      setAvatarMood(avatarLearn, "neutral");
-      showLesson();
+      showLearnItem();
     });
 
-    btnBackStart.addEventListener("click", () => {
+    function showLearnItem() {
+      const item = learnList[learnIndex];
+      learnWordEl.textContent = item.word;
+      learnMeaningEl.textContent = item.meaning;
+      learnIndexEl.textContent = (learnIndex + 1) + " / " + learnList.length;
+    }
+
+    btnLearnPrev.addEventListener("click", () => {
+      playSfx(sfxClick);
+      if (learnIndex > 0) {
+        learnIndex--;
+      } else {
+        learnIndex = learnList.length - 1;
+      }
+      showLearnItem();
+    });
+
+    btnLearnNext.addEventListener("click", () => {
+      playSfx(sfxClick);
+      if (learnIndex < learnList.length - 1) {
+        learnIndex++;
+      } else {
+        learnIndex = 0;
+      }
+      showLearnItem();
+    });
+
+    btnLearnRandom.addEventListener("click", () => {
+      playSfx(sfxClick);
+      learnIndex = Math.floor(Math.random() * learnList.length);
+      showLearnItem();
+    });
+
+    btnLearnBack.addEventListener("click", () => {
       playSfx(sfxClick);
       showScreen(screenStart);
     });
 
-    function showLesson() {
-      const l = lessons[currentLessonIndex];
-      lessonImg.src = l.image || "placeholder.png";
-      lessonWord.textContent = l.word;
-      lessonMeaning.textContent = l.meaning;
-      lessonSentence.textContent = l.sentence;
-      btnGoChallenge.style.display = (currentLessonIndex >= lessons.length - 1) ? "inline-block" : "none";
-      updateLearnProgress();
-    }
-
-    btnNextLesson.addEventListener("click", () => {
+    // GAME MODE
+    btnStartGame.addEventListener("click", () => {
       playSfx(sfxClick);
-      if (currentLessonIndex < lessons.length - 1) {
-        currentLessonIndex++;
-        showLesson();
-      } else {
-        setAvatarMood(avatarLearn, "happy");
-        btnGoChallenge.style.display = "inline-block";
+      const levelData = WORDS_DATA[currentLevel] || {};
+      const list = levelData[currentTopic] || [];
+      if (!list.length) {
+        alert("No words for this level/topic yet.");
+        return;
       }
-    });
-
-    btnPlayAudio.addEventListener("click", () => {
-      playSfx(sfxClick);
-      const l = lessons[currentLessonIndex];
-      if (!l.audio) return;
-      const audio = new Audio(l.audio);
-      audio.play().catch(() => {});
-    });
-
-    btnGoChallenge.addEventListener("click", () => {
-      playSfx(sfxClick);
-      startChallenge(false);
-    });
-
-    // -----------------------------
-    // Challenge
-    // -----------------------------
-    function startChallenge(fromWrongOnly) {
-      showScreen(screenChallenge);
-      setAvatarMood(avatarChallenge, "neutral");
+      gameQuestions = shuffleArray(list);
+      gameIndex = 0;
+      wrongWords = [];
       score = 0;
-      correctAnswers = 0;
+      wrongCount = 0;
+      totalCount = gameQuestions.length;
+      combo = 0;
+      loadBestScore();
+      updateComboBar();
+      statsLabel.textContent = "Wrong 0 / " + totalCount;
+      setAvatarMood("neutral");
+      showScreen(screenGame);
+      loadGameQuestion();
+    });
 
-      if (fromWrongOnly && wrongWords.length) {
-        questions = [...wrongWords];
-        wrongWords = [];
-      } else {
-        questions = [...lessons];
-        wrongWords = [];
-      }
-
-      totalQuestions = questions.length;
-      currentQuestionIndex = 0;
-      progressBarChallenge.style.width = "0%";
-      loadQuestion();
-    }
-
-    function loadQuestion() {
-      if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-      }
-
-      if (currentQuestionIndex >= questions.length) {
-        endChallenge();
+    function loadGameQuestion() {
+      if (gameIndex >= gameQuestions.length) {
+        endGame();
         return;
       }
 
-      updateChallengeProgress();
-
-      const q = questions[currentQuestionIndex];
-      challengeWord.textContent = q.word;
+      const q = gameQuestions[gameIndex];
+      gameWordEl.textContent = q.word;
 
       let options = [q.meaning];
-      while (options.length < 4 && lessons.length > 1) {
-        let random = lessons[Math.floor(Math.random() * lessons.length)].meaning;
+      while (options.length < 4 && gameQuestions.length > 1) {
+        const random = gameQuestions[Math.floor(Math.random() * gameQuestions.length)].meaning;
         if (!options.includes(random)) options.push(random);
       }
       while (options.length < 4) {
         options.push("—");
       }
-
-      options.sort(() => Math.random() - 0.5);
+      options = shuffleArray(options);
 
       optionButtons.forEach((btn, i) => {
         btn.disabled = false;
@@ -778,69 +768,46 @@
         btn.textContent = options[i];
         btn.onclick = () => checkAnswer(options[i] === q.meaning, q, btn);
       });
-
-      startTimer();
-    }
-
-    function startTimer() {
-      let timeLeft = timePerQuestion;
-      timerLabel.textContent = timeLeft;
-      timerInterval = setInterval(() => {
-        timeLeft--;
-        timerLabel.textContent = timeLeft;
-        if (timeLeft <= 0) {
-          clearInterval(timerInterval);
-          timerInterval = null;
-          handleTimeout();
-        }
-      }, 1000);
-    }
-
-    function handleTimeout() {
-      const q = questions[currentQuestionIndex];
-      wrongWords.push(q);
-      setAvatarMood(avatarChallenge, "sad");
-      playSfx(sfxWrong);
-      optionButtons.forEach(btn => btn.disabled = true);
-      setTimeout(() => {
-        currentQuestionIndex++;
-        loadQuestion();
-      }, 700);
     }
 
     function checkAnswer(isCorrect, wordObj, btn) {
-      if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-      }
-
       optionButtons.forEach(b => b.disabled = true);
 
       if (isCorrect) {
         score += 10;
-        correctAnswers++;
+        combo++;
         btn.classList.add("correct");
-        setAvatarMood(avatarChallenge, "happy");
+        setAvatarMood(combo >= maxComboForFullBar ? "super-happy" : "happy");
         playSfx(sfxCorrect);
       } else {
         score -= 5;
+        combo = 0;
+        wrongCount++;
         wrongWords.push(wordObj);
         btn.classList.add("wrong");
-        setAvatarMood(avatarChallenge, "sad");
+        setAvatarMood("sad");
         playSfx(sfxWrong);
       }
 
+      updateComboBar();
+      statsLabel.textContent = "Wrong " + wrongCount + " / " + totalCount;
+
       setTimeout(() => {
-        currentQuestionIndex++;
-        loadQuestion();
+        gameIndex++;
+        loadGameQuestion();
       }, 700);
     }
 
-    function endChallenge() {
+    function endGame() {
       showScreen(screenResult);
       finalScoreLabel.textContent = score;
-      const accuracy = totalQuestions ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
-      finalAccuracyLabel.textContent = accuracy + "%";
+      if (score > bestScore) {
+        bestScore = score;
+        saveBestScore();
+      }
+      finalBestLabel.textContent = bestScore;
+      finalWrongLabel.textContent = wrongCount;
+      finalTotalLabel.textContent = totalCount;
 
       resultsList.innerHTML = "";
       if (!wrongWords.length) {
@@ -856,12 +823,8 @@
       }
     }
 
-    btnExitChallenge.addEventListener("click", () => {
+    btnExitGame.addEventListener("click", () => {
       playSfx(sfxClick);
-      if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-      }
       showScreen(screenStart);
     });
 
@@ -871,18 +834,49 @@
         alert("No wrong words to repeat.");
         return;
       }
-      startChallenge(true);
+      gameQuestions = shuffleArray(wrongWords);
+      wrongWords = [];
+      gameIndex = 0;
+      score = 0;
+      wrongCount = 0;
+      totalCount = gameQuestions.length;
+      combo = 0;
+      updateComboBar();
+      statsLabel.textContent = "Wrong 0 / " + totalCount;
+      setAvatarMood("neutral");
+      showScreen(screenGame);
+      loadGameQuestion();
     });
 
     btnPlayAgain.addEventListener("click", () => {
       playSfx(sfxClick);
-      startChallenge(false);
+      const levelData = WORDS_DATA[currentLevel] || {};
+      const list = levelData[currentTopic] || [];
+      if (!list.length) {
+        alert("No words for this level/topic yet.");
+        return;
+      }
+      gameQuestions = shuffleArray(list);
+      wrongWords = [];
+      gameIndex = 0;
+      score = 0;
+      wrongCount = 0;
+      totalCount = gameQuestions.length;
+      combo = 0;
+      updateComboBar();
+      statsLabel.textContent = "Wrong 0 / " + totalCount;
+      setAvatarMood("neutral");
+      showScreen(screenGame);
+      loadGameQuestion();
     });
 
     btnBackHome.addEventListener("click", () => {
       playSfx(sfxClick);
       showScreen(screenStart);
     });
+
+    // INIT
+    loadBestScore();
   </script>
 </body>
 </html>
