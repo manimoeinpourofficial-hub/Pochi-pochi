@@ -5,9 +5,7 @@
   <title>Anfo Word Rush</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Cute font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Cute energetic font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -15,12 +13,11 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Poppins", sans-serif;
     }
 
     body {
-      background: linear-gradient(135deg, #fff7f2, #f7f5ff);
-      color: #2b2b2b;
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -32,201 +29,112 @@
       max-width: 480px;
       background: #ffffff;
       border-radius: 24px;
-      box-shadow: 0 14px 40px rgba(0,0,0,0.08);
-      padding: 18px 18px 24px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.15);
+      padding: 22px;
+      margin: auto;
     }
 
     h1, h2, h3 {
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .logo {
+      font-size: 32px;
       font-weight: 800;
-      font-size: 26px;
       text-align: center;
-      margin-bottom: 4px;
-      color: #ff8a7a;
-      letter-spacing: 0.04em;
+      color: #ff6f61;
+      margin-bottom: 6px;
     }
 
     .subtitle {
       text-align: center;
-      font-size: 13px;
-      color: #8a8a8a;
-      margin-bottom: 16px;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 20px;
     }
 
     button {
       border: none;
-      border-radius: 999px;
-      padding: 10px 18px;
-      font-size: 14px;
+      border-radius: 14px;
+      padding: 12px 18px;
+      font-size: 15px;
       cursor: pointer;
-      background: #ff8a7a;
+      background: #ff6f61;
       color: #fff;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
+      transition: 0.15s ease;
     }
 
     button:hover {
-      background: #ff7a69;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      transform: translateY(-1px);
-    }
-
-    button:active {
-      transform: translateY(0);
-      box-shadow: none;
+      background: #ff5a4a;
+      transform: translateY(-2px);
     }
 
     .btn-secondary {
-      background: #f3f0ff;
-      color: #5b4ea3;
+      background: #ffe3e3;
+      color: #ff6f61;
     }
 
-    .btn-secondary:hover {
-      background: #e6deff;
-    }
-
-    .screen {
-      display: none;
-    }
-
-    .screen.active {
-      display: block;
-    }
-
-    .center {
-      text-align: center;
-    }
-
-    .section {
-      margin-bottom: 16px;
-    }
+    .screen { display: none; }
+    .screen.active { display: block; }
 
     .chips {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
       justify-content: center;
-      margin-top: 8px;
+      gap: 10px;
+      margin-bottom: 16px;
     }
 
     .chip {
-      padding: 6px 12px;
-      border-radius: 999px;
-      background: #f9f4ff;
-      font-size: 13px;
+      padding: 8px 14px;
+      background: #ffe8e8;
+      border-radius: 12px;
       cursor: pointer;
-      color: #6b5aa8;
-      border: 1px solid transparent;
+      color: #ff6f61;
+      border: 2px solid transparent;
     }
 
     .chip.selected {
-      background: #ffcfdf;
-      color: #b03b6f;
-      border-color: #ff9fbf;
+      background: #ff6f61;
+      color: #fff;
+      border-color: #ff3b2e;
     }
 
-    .actions-row {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 12px;
-      flex-wrap: wrap;
-    }
-
-    /* Learn screen */
+    /* Learn card */
     #learn-card {
-      background: #fff7fb;
+      background: #fff4f4;
+      padding: 20px;
       border-radius: 18px;
-      padding: 20px 16px;
       text-align: center;
-      border: 1px solid #ffe0f2;
-      margin-top: 10px;
+      margin-top: 20px;
     }
 
     #learn-word {
-      font-size: 26px;
+      font-size: 30px;
       font-weight: 700;
-      color: #ff7a7a;
+      color: #ff6f61;
       margin-bottom: 8px;
     }
 
     #learn-meaning {
-      font-size: 18px;
-      color: #555;
+      font-size: 20px;
+      color: #444;
       margin-bottom: 6px;
     }
 
     #learn-index {
-      font-size: 12px;
-      color: #999;
-      margin-top: 6px;
+      font-size: 13px;
+      color: #777;
     }
 
-    /* Game top bar */
-    #game-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 12px;
-    }
-
-    #record-label {
-      font-weight: 600;
-      color: #ff7a7a;
-    }
-
-    #stats-label {
-      font-size: 12px;
-      color: #8a7bb8;
-    }
-
-    /* Combo bar */
-    #combo-container {
-      margin: 6px 0 12px;
-      background: #f7e9ff;
-      border-radius: 999px;
-      height: 12px;
-      overflow: hidden;
-      position: relative;
-      border: 1px solid transparent;
-    }
-
-    #combo-bar {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #ff9fbf, #ffc15e);
-      border-radius: 999px;
-      transition: width 0.25s ease;
-    }
-
-    #combo-container.hollow {
-      background: #fff;
-      border-color: #f0d7ff;
-    }
-
-    #combo-label {
-      font-size: 11px;
-      color: #8a7bb8;
-      text-align: right;
-      margin-bottom: 4px;
-    }
-
-    /* Avatar */
-    #avatar-container {
-      display: flex;
-      justify-content: center;
-      margin: 6px 0 10px;
-    }
-
+    /* Game UI */
     #avatar-game {
-      width: 96px;
-      height: 96px;
+      width: 140px;
+      height: 140px;
       object-fit: contain;
-      transition: transform 0.2s ease;
+      margin: 10px auto;
+      display: block;
+      transition: 0.2s ease;
     }
 
     .avatar-bounce {
@@ -235,105 +143,108 @@
 
     @keyframes bounce {
       0% { transform: scale(1); }
-      30% { transform: scale(1.1); }
-      60% { transform: scale(0.95); }
+      30% { transform: scale(1.15); }
+      60% { transform: scale(0.9); }
       100% { transform: scale(1); }
     }
 
-    /* Game word & options */
     #game-word {
       text-align: center;
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 700;
-      margin: 8px 0 12px;
-      color: #ff7a7a;
+      color: #ff6f61;
+      margin-bottom: 16px;
     }
 
     #options {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px;
+      gap: 12px;
     }
 
     .option {
-      width: 100%;
-      text-align: center;
-      font-size: 13px;
-      padding: 10px 6px;
-      background: #fdf5ff;
-      color: #5b4ea3;
+      background: #fff0f0;
+      color: #ff6f61;
       border-radius: 14px;
-      border: 1px solid transparent;
+      padding: 12px;
+      font-size: 15px;
+      border: 2px solid transparent;
     }
 
     .option.correct {
-      background: #e1ffe8;
-      color: #1b7a1b;
-      border-color: #9be7b0;
+      background: #d4ffe1;
+      border-color: #2ecc71;
+      color: #1e8a4d;
     }
 
     .option.wrong {
-      background: #ffe1e1;
+      background: #ffd6d6;
+      border-color: #ff3b2e;
       color: #b00020;
-      border-color: #ff9b9b;
     }
 
-    /* Result screen */
-    #results-list {
-      margin-top: 8px;
-      font-size: 13px;
-      list-style: none;
-    }
-
-    #results-list li {
-      margin-bottom: 4px;
-    }
-
-    /* Inputs (if needed later) */
-    .input {
+    /* Timer bar */
+    #timer-container {
       width: 100%;
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid #ffd6e8;
-      background: #fff7fb;
-      font-size: 14px;
-      margin-bottom: 6px;
+      height: 10px;
+      background: #ffe3e3;
+      border-radius: 999px;
+      margin: 16px 0;
+      overflow: hidden;
     }
 
-    @media (max-width: 480px) {
-      #app {
-        border-radius: 0;
-        max-width: 100%;
-        height: 100vh;
-      }
+    #timer-bar {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #ff6f61, #ff9f43);
+      transition: width linear;
+    }
+
+    /* Stats */
+    #stats-label {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    #record-label {
+      text-align: center;
+      font-size: 14px;
+      color: #ff6f61;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    /* Result */
+    #results-list li {
+      margin-bottom: 6px;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
   <div id="app">
+
     <!-- START SCREEN -->
     <div id="screen-start" class="screen active">
       <div class="logo">Anfo</div>
-      <div class="subtitle">Cute word game for learning English</div>
+      <div class="subtitle">Fun, fast, energetic word game</div>
 
-      <div class="section center">
-        <h3>Choose level</h3>
-        <div class="chips" id="level-chips">
-          <div class="chip selected" data-level="beginner">Beginner</div>
-          <div class="chip" data-level="intermediate">Intermediate</div>
-        </div>
+      <h3>Choose level</h3>
+      <div class="chips" id="level-chips">
+        <div class="chip selected" data-level="beginner">Beginner</div>
+        <div class="chip" data-level="intermediate">Intermediate</div>
       </div>
 
-      <div class="section center">
-        <h3>Choose topic</h3>
-        <div class="chips" id="topic-chips">
-          <div class="chip selected" data-topic="daily">Daily</div>
-          <div class="chip" data-topic="food">Food</div>
-          <div class="chip" data-topic="travel">Travel</div>
-        </div>
+      <h3>Choose topic</h3>
+      <div class="chips" id="topic-chips">
+        <div class="chip selected" data-topic="daily">Daily</div>
+        <div class="chip" data-topic="food">Food</div>
+        <div class="chip" data-topic="travel">Travel</div>
       </div>
 
-      <div class="actions-row">
+      <div class="actions-row" style="display:flex; justify-content:center; gap:12px;">
         <button id="btn-start-learn" class="btn-secondary">Learn</button>
         <button id="btn-start-game">Play</button>
       </div>
@@ -342,15 +253,18 @@
     <!-- LEARN SCREEN -->
     <div id="screen-learn" class="screen">
       <h2>Learn words</h2>
+
       <div id="learn-card">
         <div id="learn-word"></div>
         <div id="learn-meaning"></div>
         <div id="learn-index"></div>
       </div>
-      <div class="actions-row">
+
+      <div class="actions-row" style="margin-top:20px;">
         <button id="btn-learn-prev" class="btn-secondary">Previous</button>
         <button id="btn-learn-next">Next</button>
       </div>
+
       <div class="actions-row">
         <button id="btn-learn-random" class="btn-secondary">Random</button>
         <button id="btn-learn-back" class="btn-secondary">Back</button>
@@ -359,19 +273,10 @@
 
     <!-- GAME SCREEN -->
     <div id="screen-game" class="screen">
-      <div id="game-top">
-        <span id="record-label">Best: 0</span>
-        <span id="stats-label">Wrong 0 / 0</span>
-      </div>
+      <div id="record-label">Best: 0</div>
+      <div id="stats-label">Wrong 0 / 0</div>
 
-      <div id="combo-label">Combo: 0</div>
-      <div id="combo-container">
-        <div id="combo-bar"></div>
-      </div>
-
-      <div id="avatar-container">
-        <img id="avatar-game" src="avatar_neutral.png" alt="avatar" />
-      </div>
+      <img id="avatar-game" src="avatar_neutral.png" />
 
       <div id="game-word">word</div>
 
@@ -382,6 +287,10 @@
         <button class="option"></button>
       </div>
 
+      <div id="timer-container">
+        <div id="timer-bar"></div>
+      </div>
+
       <div class="actions-row">
         <button id="btn-exit-game" class="btn-secondary">Exit</button>
       </div>
@@ -389,139 +298,55 @@
 
     <!-- RESULT SCREEN -->
     <div id="screen-result" class="screen">
-      <h2>Stage result</h2>
+      <h2>Results</h2>
+
       <div class="center" style="margin-top:8px;">
         <div>Score: <strong id="final-score">0</strong></div>
         <div>Best: <strong id="final-best">0</strong></div>
         <div>Wrong: <strong id="final-wrong">0</strong> / <strong id="final-total">0</strong></div>
       </div>
 
-      <div class="section">
-        <h3 style="font-size:14px; margin-bottom:4px;">Wrong words</h3>
-        <ul id="results-list"></ul>
-      </div>
+      <h3 style="margin-top:16px;">Wrong words</h3>
+      <ul id="results-list"></ul>
 
       <div class="actions-row">
-        <button id="btn-repeat-wrong">Repeat wrong 🔁</button>
-        <button class="btn-secondary" id="btn-play-again">Play again</button>
-        <button class="btn-secondary" id="btn-back-home">Home</button>
+        <button id="btn-repeat-wrong">Repeat wrong</button>
+        <button id="btn-play-again" class="btn-secondary">Play again</button>
+        <button id="btn-back-home" class="btn-secondary">Home</button>
       </div>
     </div>
-  </div>
 
-  <!-- SFX (optional) -->
-  <audio id="sfx-correct" src="sfx_correct.mp3"></audio>
-  <audio id="sfx-wrong" src="sfx_wrong.mp3"></audio>
-  <audio id="sfx-click" src="sfx_click.mp3"></audio>
+  </div>
 
   <!-- DATA -->
   <script>
     const WORDS_DATA = {
       beginner: {
         daily: [
-          { word: "hello", meaning: "سلام", sentence: "Hello, how are you?" },
-          { word: "goodbye", meaning: "خداحافظ", sentence: "Goodbye, see you later." },
-          { word: "please", meaning: "لطفاً", sentence: "Please give me the book." },
-          { word: "thanks", meaning: "متشکرم", sentence: "Thanks for your help." },
-          { word: "sorry", meaning: "ببخشید", sentence: "Sorry for being late." },
-          { word: "yes", meaning: "بله", sentence: "Yes, I agree." },
-          { word: "no", meaning: "نه", sentence: "No, I don't want it." },
-          { word: "friend", meaning: "دوست", sentence: "He is my best friend." },
-          { word: "family", meaning: "خانواده", sentence: "My family is very important to me." },
-          { word: "home", meaning: "خانه", sentence: "I am going home now." },
-          { word: "school", meaning: "مدرسه", sentence: "I walk to school every day." },
-          { word: "work", meaning: "کار", sentence: "I work in an office." },
-          { word: "happy", meaning: "خوشحال", sentence: "I feel happy today." },
-          { word: "sad", meaning: "غمگین", sentence: "She looks sad." },
-          { word: "tired", meaning: "خسته", sentence: "I am tired after work." },
-          { word: "morning", meaning: "صبح", sentence: "I wake up early in the morning." },
-          { word: "night", meaning: "شب", sentence: "Good night, sleep well." },
-          { word: "today", meaning: "امروز", sentence: "Today is a good day." },
-          { word: "tomorrow", meaning: "فردا", sentence: "I will call you tomorrow." },
-          { word: "yesterday", meaning: "دیروز", sentence: "Yesterday was fun." },
-          { word: "water", meaning: "آب", sentence: "I need some water." },
-          { word: "phone", meaning: "تلفن", sentence: "My phone is charging." },
-          { word: "time", meaning: "زمان", sentence: "What time is it?" },
-          { word: "money", meaning: "پول", sentence: "I don't have enough money." },
-          { word: "love", meaning: "عشق", sentence: "I love my family." },
-          { word: "name", meaning: "نام", sentence: "What is your name?" },
-          { word: "city", meaning: "شهر", sentence: "This city is beautiful." },
-          { word: "street", meaning: "خیابان", sentence: "I live on this street." },
-          { word: "car", meaning: "ماشین", sentence: "My car is new." },
-          { word: "bus", meaning: "اتوبوس", sentence: "The bus is late." },
-          { word: "walk", meaning: "راه رفتن", sentence: "I walk every morning." },
-          { word: "run", meaning: "دویدن", sentence: "I run to stay healthy." },
-          { word: "read", meaning: "خواندن", sentence: "I read books at night." }
+          { word: "hello", meaning: "سلام" },
+          { word: "goodbye", meaning: "خداحافظ" },
+          { word: "please", meaning: "لطفاً" },
+          { word: "thanks", meaning: "متشکرم" },
+          { word: "sorry", meaning: "ببخشید" },
+          { word: "yes", meaning: "بله" },
+          { word: "no", meaning: "نه" },
+          { word: "friend", meaning: "دوست" },
+          { word: "family", meaning: "خانواده" },
+          { word: "home", meaning: "خانه" }
         ],
         food: [
-          { word: "apple", meaning: "سیب", sentence: "I eat an apple every day." },
-          { word: "banana", meaning: "موز", sentence: "Bananas are yellow." },
-          { word: "orange", meaning: "پرتقال", sentence: "I like orange juice." },
-          { word: "bread", meaning: "نان", sentence: "I bought fresh bread." },
-          { word: "rice", meaning: "برنج", sentence: "We eat rice for lunch." },
-          { word: "egg", meaning: "تخم‌مرغ", sentence: "I had eggs for breakfast." },
-          { word: "milk", meaning: "شیر", sentence: "Milk is good for health." },
-          { word: "tea", meaning: "چای", sentence: "I drink tea every morning." },
-          { word: "coffee", meaning: "قهوه", sentence: "Coffee wakes me up." },
-          { word: "chicken", meaning: "مرغ", sentence: "I like grilled chicken." },
-          { word: "meat", meaning: "گوشت", sentence: "Meat is expensive." },
-          { word: "fish", meaning: "ماهی", sentence: "Fish is healthy." },
-          { word: "soup", meaning: "سوپ", sentence: "I made vegetable soup." },
-          { word: "salad", meaning: "سالاد", sentence: "I eat salad every night." },
-          { word: "pizza", meaning: "پیتزا", sentence: "Pizza is my favorite food." },
-          { word: "burger", meaning: "برگر", sentence: "I ordered a burger." },
-          { word: "cheese", meaning: "پنیر", sentence: "Cheese is delicious." },
-          { word: "butter", meaning: "کره", sentence: "I put butter on bread." },
-          { word: "salt", meaning: "نمک", sentence: "Add some salt." },
-          { word: "sugar", meaning: "شکر", sentence: "Too much sugar is bad." },
-          { word: "juice", meaning: "آبمیوه", sentence: "I like fresh juice." },
-          { word: "watermelon", meaning: "هندوانه", sentence: "Watermelon is sweet." },
-          { word: "grape", meaning: "انگور", sentence: "Grapes are tasty." },
-          { word: "lemon", meaning: "لیمو", sentence: "Lemon is sour." },
-          { word: "tomato", meaning: "گوجه", sentence: "Tomatoes are red." },
-          { word: "potato", meaning: "سیب‌زمینی", sentence: "Potatoes are cheap." },
-          { word: "onion", meaning: "پیاز", sentence: "Onions make me cry." },
-          { word: "carrot", meaning: "هویج", sentence: "Carrots are orange." },
-          { word: "pepper", meaning: "فلفل", sentence: "Pepper is spicy." },
-          { word: "ice cream", meaning: "بستنی", sentence: "I love ice cream." },
-          { word: "chocolate", meaning: "شکلات", sentence: "Chocolate is sweet." },
-          { word: "cookie", meaning: "کوکی", sentence: "I baked cookies." },
-          { word: "honey", meaning: "عسل", sentence: "Honey is natural sugar." }
+          { word: "apple", meaning: "سیب" },
+          { word: "banana", meaning: "موز" },
+          { word: "bread", meaning: "نان" },
+          { word: "rice", meaning: "برنج" },
+          { word: "milk", meaning: "شیر" }
         ],
         travel: [
-          { word: "ticket", meaning: "بلیت", sentence: "I bought a ticket to Paris." },
-          { word: "airport", meaning: "فرودگاه", sentence: "The airport is crowded." },
-          { word: "flight", meaning: "پرواز", sentence: "My flight is delayed." },
-          { word: "hotel", meaning: "هتل", sentence: "We booked a hotel room." },
-          { word: "room", meaning: "اتاق", sentence: "Our room is clean." },
-          { word: "passport", meaning: "پاسپورت", sentence: "Don't forget your passport." },
-          { word: "bag", meaning: "کیف", sentence: "My bag is heavy." },
-          { word: "map", meaning: "نقشه", sentence: "I need a map." },
-          { word: "train", meaning: "قطار", sentence: "The train is fast." },
-          { word: "station", meaning: "ایستگاه", sentence: "Meet me at the station." },
-          { word: "bus", meaning: "اتوبوس", sentence: "The bus arrives soon." },
-          { word: "taxi", meaning: "تاکسی", sentence: "We took a taxi." },
-          { word: "city", meaning: "شهر", sentence: "This city is beautiful." },
-          { word: "country", meaning: "کشور", sentence: "I love this country." },
-          { word: "beach", meaning: "ساحل", sentence: "The beach is relaxing." },
-          { word: "sea", meaning: "دریا", sentence: "The sea is blue." },
-          { word: "mountain", meaning: "کوه", sentence: "The mountain is high." },
-          { word: "island", meaning: "جزیره", sentence: "We visited an island." },
-          { word: "tour", meaning: "تور", sentence: "We joined a city tour." },
-          { word: "guide", meaning: "راهنما", sentence: "The guide was helpful." },
-          { word: "camera", meaning: "دوربین", sentence: "I forgot my camera." },
-          { word: "photo", meaning: "عکس", sentence: "I took many photos." },
-          { word: "travel", meaning: "سفر", sentence: "I love to travel." },
-          { word: "visit", meaning: "بازدید", sentence: "We visited a museum." },
-          { word: "museum", meaning: "موزه", sentence: "The museum was amazing." },
-          { word: "park", meaning: "پارک", sentence: "We walked in the park." },
-          { word: "bridge", meaning: "پل", sentence: "The bridge is long." },
-          { word: "road", meaning: "جاده", sentence: "The road is empty." },
-          { word: "car", meaning: "ماشین", sentence: "We rented a car." },
-          { word: "driver", meaning: "راننده", sentence: "The driver was friendly." },
-          { word: "bag", meaning: "چمدان", sentence: "My bag is full." },
-          { word: "airport bus", meaning: "اتوبوس فرودگاه", sentence: "We took the airport bus." },
-          { word: "check-in", meaning: "چک‌این", sentence: "We checked in early." }
+          { word: "ticket", meaning: "بلیت" },
+          { word: "airport", meaning: "فرودگاه" },
+          { word: "hotel", meaning: "هتل" },
+          { word: "passport", meaning: "پاسپورت" },
+          { word: "map", meaning: "نقشه" }
         ]
       },
       intermediate: {
@@ -532,8 +357,8 @@
     };
   </script>
 
+  <!-- GAME LOGIC -->
   <script>
-    // STATE
     let currentLevel = "beginner";
     let currentTopic = "daily";
 
@@ -543,14 +368,14 @@
     let gameQuestions = [];
     let gameIndex = 0;
     let wrongWords = [];
-    let score = 0;
-    let bestScore = 0;
     let wrongCount = 0;
     let totalCount = 0;
-    let combo = 0;
-    const maxComboForFullBar = 5;
+    let score = 0;
+    let bestScore = 0;
 
-    // ELEMENTS
+    let timerInterval = null;
+    const timeLimit = 5;
+
     const screenStart = document.getElementById("screen-start");
     const screenLearn = document.getElementById("screen-learn");
     const screenGame = document.getElementById("screen-game");
@@ -565,6 +390,7 @@
     const learnWordEl = document.getElementById("learn-word");
     const learnMeaningEl = document.getElementById("learn-meaning");
     const learnIndexEl = document.getElementById("learn-index");
+
     const btnLearnPrev = document.getElementById("btn-learn-prev");
     const btnLearnNext = document.getElementById("btn-learn-next");
     const btnLearnRandom = document.getElementById("btn-learn-random");
@@ -572,12 +398,11 @@
 
     const recordLabel = document.getElementById("record-label");
     const statsLabel = document.getElementById("stats-label");
-    const comboLabel = document.getElementById("combo-label");
-    const comboContainer = document.getElementById("combo-container");
-    const comboBar = document.getElementById("combo-bar");
     const avatarGame = document.getElementById("avatar-game");
     const gameWordEl = document.getElementById("game-word");
     const optionButtons = document.querySelectorAll(".option");
+
+    const timerBar = document.getElementById("timer-bar");
     const btnExitGame = document.getElementById("btn-exit-game");
 
     const finalScoreLabel = document.getElementById("final-score");
@@ -585,40 +410,25 @@
     const finalWrongLabel = document.getElementById("final-wrong");
     const finalTotalLabel = document.getElementById("final-total");
     const resultsList = document.getElementById("results-list");
+
     const btnRepeatWrong = document.getElementById("btn-repeat-wrong");
     const btnPlayAgain = document.getElementById("btn-play-again");
     const btnBackHome = document.getElementById("btn-back-home");
 
-    const sfxCorrect = document.getElementById("sfx-correct");
-    const sfxWrong = document.getElementById("sfx-wrong");
-    const sfxClick = document.getElementById("sfx-click");
-
-    // HELPERS
     function showScreen(screen) {
       [screenStart, screenLearn, screenGame, screenResult].forEach(s => s.classList.remove("active"));
       screen.classList.add("active");
     }
 
-    function playSfx(audioEl) {
-      if (!audioEl) return;
-      audioEl.currentTime = 0;
-      audioEl.play().catch(() => {});
+    function shuffle(arr) {
+      return arr.sort(() => Math.random() - 0.5);
     }
 
-    function shuffleArray(arr) {
-      const a = [...arr];
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
-      return a;
-    }
-
-    function setAvatarMood(mood) {
+    function setAvatar(mood) {
       let src = "avatar_neutral.png";
+      if (mood === "happy") src = "avatar_happy.png";
       if (mood === "sad") src = "avatar_sad.png";
-      else if (mood === "happy") src = "avatar_happy.png";
-      else if (mood === "super-happy") src = "avatar_super_happy.png";
+      if (mood === "super") src = "avatar_super_happy.png";
 
       avatarGame.src = src;
       avatarGame.classList.remove("avatar-bounce");
@@ -626,124 +436,116 @@
       avatarGame.classList.add("avatar-bounce");
     }
 
-    function updateComboBar() {
-      const ratio = Math.min(combo / maxComboForFullBar, 1);
-      comboBar.style.width = (ratio * 100) + "%";
-      comboLabel.textContent = "Combo: " + combo;
-      if (combo === 0) {
-        comboContainer.classList.add("hollow");
-      } else {
-        comboContainer.classList.remove("hollow");
-      }
-    }
-
-    function loadBestScore() {
-      const saved = localStorage.getItem("anfo_best_score");
-      bestScore = saved ? parseInt(saved, 10) : 0;
-      recordLabel.textContent = "Best: " + bestScore;
-    }
-
-    function saveBestScore() {
-      localStorage.setItem("anfo_best_score", bestScore.toString());
-    }
-
-    // LEVEL & TOPIC
-    levelChips.addEventListener("click", (e) => {
+    levelChips.addEventListener("click", e => {
       const chip = e.target.closest(".chip");
       if (!chip) return;
       levelChips.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
       chip.classList.add("selected");
       currentLevel = chip.dataset.level;
-      playSfx(sfxClick);
     });
 
-    topicChips.addEventListener("click", (e) => {
+    topicChips.addEventListener("click", e => {
       const chip = e.target.closest(".chip");
       if (!chip) return;
       topicChips.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
       chip.classList.add("selected");
       currentTopic = chip.dataset.topic;
-      playSfx(sfxClick);
     });
 
-    // LEARN MODE
     btnStartLearn.addEventListener("click", () => {
-      playSfx(sfxClick);
-      const levelData = WORDS_DATA[currentLevel] || {};
-      const list = levelData[currentTopic] || [];
-      if (!list.length) {
-        alert("No words for this level/topic yet.");
-        return;
-      }
-      learnList = shuffleArray(list); // رندوم هوشمندانه
+      const list = WORDS_DATA[currentLevel][currentTopic];
+      learnList = shuffle(list);
       learnIndex = 0;
+      showLearn();
       showScreen(screenLearn);
-      showLearnItem();
     });
 
-    function showLearnItem() {
+    function showLearn() {
       const item = learnList[learnIndex];
       learnWordEl.textContent = item.word;
       learnMeaningEl.textContent = item.meaning;
-      learnIndexEl.textContent = (learnIndex + 1) + " / " + learnList.length;
+      learnIndexEl.textContent = `${learnIndex + 1} / ${learnList.length}`;
     }
 
-    btnLearnPrev.addEventListener("click", () => {
-      playSfx(sfxClick);
-      if (learnIndex > 0) {
-        learnIndex--;
-      } else {
-        learnIndex = learnList.length - 1;
-      }
-      showLearnItem();
-    });
+    btnLearnPrev.onclick = () => {
+      learnIndex = (learnIndex - 1 + learnList.length) % learnList.length;
+      showLearn();
+    };
 
-    btnLearnNext.addEventListener("click", () => {
-      playSfx(sfxClick);
-      if (learnIndex < learnList.length - 1) {
-        learnIndex++;
-      } else {
-        learnIndex = 0;
-      }
-      showLearnItem();
-    });
+    btnLearnNext.onclick = () => {
+      learnIndex = (learnIndex + 1) % learnList.length;
+      showLearn();
+    };
 
-    btnLearnRandom.addEventListener("click", () => {
-      playSfx(sfxClick);
+    btnLearnRandom.onclick = () => {
       learnIndex = Math.floor(Math.random() * learnList.length);
-      showLearnItem();
-    });
+      showLearn();
+    };
 
-    btnLearnBack.addEventListener("click", () => {
-      playSfx(sfxClick);
-      showScreen(screenStart);
-    });
+    btnLearnBack.onclick = () => showScreen(screenStart);
 
-    // GAME MODE
-    btnStartGame.addEventListener("click", () => {
-      playSfx(sfxClick);
-      const levelData = WORDS_DATA[currentLevel] || {};
-      const list = levelData[currentTopic] || [];
-      if (!list.length) {
-        alert("No words for this level/topic yet.");
-        return;
-      }
-      gameQuestions = shuffleArray(list);
+    btnStartGame.onclick = () => {
+      const list = WORDS_DATA[currentLevel][currentTopic];
+      gameQuestions = shuffle(list);
       gameIndex = 0;
       wrongWords = [];
-      score = 0;
       wrongCount = 0;
       totalCount = gameQuestions.length;
-      combo = 0;
-      loadBestScore();
-      updateComboBar();
-      statsLabel.textContent = "Wrong 0 / " + totalCount;
-      setAvatarMood("neutral");
+      score = 0;
+
+      bestScore = parseInt(localStorage.getItem("bestScore") || "0");
+      recordLabel.textContent = "Best: " + bestScore;
+
+      statsLabel.textContent = `Wrong 0 / ${totalCount}`;
+      setAvatar("neutral");
+
+     
       showScreen(screenGame);
       loadGameQuestion();
-    });
+    };
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      let timeLeft = timeLimit;
+      timerBar.style.transition = "none";
+      timerBar.style.width = "100%";
+
+      setTimeout(() => {
+        timerBar.style.transition = `width ${timeLimit}s linear`;
+        timerBar.style.width = "0%";
+      }, 50);
+
+      timerInterval = setInterval(() => {
+        timeLeft -= 1;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          handleTimeout();
+        }
+      }, 1000);
+    }
+
+    function handleTimeout() {
+      wrongCount++;
+      statsLabel.textContent = `Wrong ${wrongCount} / ${totalCount}`;
+      setAvatar("sad");
+
+      const q = gameQuestions[gameIndex];
+      wrongWords.push(q);
+
+      setTimeout(() => {
+        gameIndex++;
+        loadGameQuestion();
+      }, 600);
+    }
 
     function loadGameQuestion() {
+      clearInterval(timerInterval);
+
+      optionButtons.forEach(btn => {
+        btn.classList.remove("correct", "wrong");
+        btn.disabled = false;
+      });
+
       if (gameIndex >= gameQuestions.length) {
         endGame();
         return;
@@ -753,130 +555,116 @@
       gameWordEl.textContent = q.word;
 
       let options = [q.meaning];
-      while (options.length < 4 && gameQuestions.length > 1) {
+      while (options.length < 4) {
         const random = gameQuestions[Math.floor(Math.random() * gameQuestions.length)].meaning;
         if (!options.includes(random)) options.push(random);
       }
-      while (options.length < 4) {
-        options.push("—");
-      }
-      options = shuffleArray(options);
+
+      options = shuffle(options);
 
       optionButtons.forEach((btn, i) => {
-        btn.disabled = false;
-        btn.classList.remove("correct", "wrong");
         btn.textContent = options[i];
         btn.onclick = () => checkAnswer(options[i] === q.meaning, q, btn);
       });
+
+      startTimer();
     }
 
     function checkAnswer(isCorrect, wordObj, btn) {
+      clearInterval(timerInterval);
+
       optionButtons.forEach(b => b.disabled = true);
 
       if (isCorrect) {
         score += 10;
-        combo++;
         btn.classList.add("correct");
-        setAvatarMood(combo >= maxComboForFullBar ? "super-happy" : "happy");
-        playSfx(sfxCorrect);
+        setAvatar("happy");
       } else {
         score -= 5;
-        combo = 0;
         wrongCount++;
         wrongWords.push(wordObj);
         btn.classList.add("wrong");
-        setAvatarMood("sad");
-        playSfx(sfxWrong);
+        setAvatar("sad");
       }
 
-      updateComboBar();
-      statsLabel.textContent = "Wrong " + wrongCount + " / " + totalCount;
+      statsLabel.textContent = `Wrong ${wrongCount} / ${totalCount}`;
 
       setTimeout(() => {
         gameIndex++;
         loadGameQuestion();
-      }, 700);
+      }, 650);
     }
 
     function endGame() {
       showScreen(screenResult);
+
       finalScoreLabel.textContent = score;
+
       if (score > bestScore) {
         bestScore = score;
-        saveBestScore();
+        localStorage.setItem("bestScore", bestScore);
       }
+
       finalBestLabel.textContent = bestScore;
       finalWrongLabel.textContent = wrongCount;
       finalTotalLabel.textContent = totalCount;
 
       resultsList.innerHTML = "";
-      if (!wrongWords.length) {
-        const li = document.createElement("li");
-        li.textContent = "No wrong words. Great job! 🎉";
-        resultsList.appendChild(li);
+      if (wrongWords.length === 0) {
+        resultsList.innerHTML = "<li>No wrong words! 🎉</li>";
       } else {
         wrongWords.forEach(w => {
           const li = document.createElement("li");
-          li.textContent = w.word + " = " + w.meaning;
+          li.textContent = `${w.word} = ${w.meaning}`;
           resultsList.appendChild(li);
         });
       }
     }
 
-    btnExitGame.addEventListener("click", () => {
-      playSfx(sfxClick);
+    btnExitGame.onclick = () => {
+      clearInterval(timerInterval);
       showScreen(screenStart);
-    });
+    };
 
-    btnRepeatWrong.addEventListener("click", () => {
-      playSfx(sfxClick);
+    btnRepeatWrong.onclick = () => {
       if (!wrongWords.length) {
         alert("No wrong words to repeat.");
         return;
       }
-      gameQuestions = shuffleArray(wrongWords);
+
+      gameQuestions = shuffle(wrongWords);
       wrongWords = [];
+      wrongCount = 0;
       gameIndex = 0;
       score = 0;
-      wrongCount = 0;
       totalCount = gameQuestions.length;
-      combo = 0;
-      updateComboBar();
-      statsLabel.textContent = "Wrong 0 / " + totalCount;
-      setAvatarMood("neutral");
+
+      statsLabel.textContent = `Wrong 0 / ${totalCount}`;
+      setAvatar("neutral");
+
       showScreen(screenGame);
       loadGameQuestion();
-    });
+    };
 
-    btnPlayAgain.addEventListener("click", () => {
-      playSfx(sfxClick);
-      const levelData = WORDS_DATA[currentLevel] || {};
-      const list = levelData[currentTopic] || [];
-      if (!list.length) {
-        alert("No words for this level/topic yet.");
-        return;
-      }
-      gameQuestions = shuffleArray(list);
+    btnPlayAgain.onclick = () => {
+      const list = WORDS_DATA[currentLevel][currentTopic];
+      gameQuestions = shuffle(list);
       wrongWords = [];
+      wrongCount = 0;
       gameIndex = 0;
       score = 0;
-      wrongCount = 0;
       totalCount = gameQuestions.length;
-      combo = 0;
-      updateComboBar();
-      statsLabel.textContent = "Wrong 0 / " + totalCount;
-      setAvatarMood("neutral");
+
+      statsLabel.textContent = `Wrong 0 / ${totalCount}`;
+      setAvatar("neutral");
+
       showScreen(screenGame);
       loadGameQuestion();
-    });
+    };
 
-    btnBackHome.addEventListener("click", () => {
-      playSfx(sfxClick);
+    btnBackHome.onclick = () => {
       showScreen(screenStart);
-    });
-
-    // INIT
-    loadBestScore();
+    };
   </script>
 </body>
 </html>
