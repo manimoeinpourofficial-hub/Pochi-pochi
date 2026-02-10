@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Anfo Word Rush</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Cute font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     body {
-      background: linear-gradient(135deg, #fdfbfb, #ebedee);
-      color: #222;
+      background: linear-gradient(135deg, #fff7f2, #f7f5ff);
+      color: #2b2b2b;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -26,45 +31,46 @@
       width: 100%;
       max-width: 480px;
       background: #ffffff;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      padding: 16px 16px 24px;
+      border-radius: 24px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.08);
+      padding: 18px 18px 24px;
     }
 
     h1, h2, h3 {
       text-align: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .logo {
       font-weight: 800;
-      font-size: 24px;
+      font-size: 26px;
       text-align: center;
-      margin-bottom: 8px;
-      color: #ff7a59;
+      margin-bottom: 4px;
+      color: #ff8a7a;
+      letter-spacing: 0.04em;
     }
 
     .subtitle {
       text-align: center;
       font-size: 13px;
-      color: #777;
+      color: #8a8a8a;
       margin-bottom: 16px;
     }
 
     button {
       border: none;
       border-radius: 999px;
-      padding: 10px 16px;
+      padding: 10px 18px;
       font-size: 14px;
       cursor: pointer;
-      background: #ff7a59;
+      background: #ff8a7a;
       color: #fff;
       transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.2s ease;
     }
 
     button:hover {
-      background: #ff6a45;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+      background: #ff7a69;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
       transform: translateY(-1px);
     }
 
@@ -74,12 +80,12 @@
     }
 
     .btn-secondary {
-      background: #f0f0f0;
-      color: #333;
+      background: #f3f0ff;
+      color: #5b4ea3;
     }
 
     .btn-secondary:hover {
-      background: #e4e4e4;
+      background: #e6deff;
     }
 
     .screen {
@@ -109,14 +115,17 @@
     .chip {
       padding: 6px 12px;
       border-radius: 999px;
-      background: #f5f5f5;
+      background: #f9f4ff;
       font-size: 13px;
       cursor: pointer;
+      color: #6b5aa8;
+      border: 1px solid transparent;
     }
 
     .chip.selected {
-      background: #ff7a59;
-      color: #fff;
+      background: #ffcfdf;
+      color: #b03b6f;
+      border-color: #ff9fbf;
     }
 
     /* Top bar */
@@ -125,7 +134,32 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 8px;
-      font-size: 13px;
+      font-size: 12px;
+    }
+
+    #progress-container {
+      flex: 1;
+      margin: 0 8px;
+      background: #f7e9ff;
+      border-radius: 999px;
+      height: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff9fbf, #ffc15e);
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+
+    #progress-label {
+      font-size: 11px;
+      color: #8a7bb8;
+      min-width: 70px;
+      text-align: right;
     }
 
     #timer {
@@ -134,25 +168,19 @@
       padding: 4px 10px;
       border-radius: 999px;
       font-weight: 600;
-    }
-
-    #score {
-      font-weight: 600;
-    }
-
-    #profile-mini {
-      font-size: 11px;
-      color: #666;
+      min-width: 40px;
+      text-align: center;
     }
 
     /* Avatar */
     #avatar-container {
       display: flex;
       justify-content: center;
-      margin: 8px 0 12px;
+      margin: 10px 0 14px;
     }
 
-    #avatar {
+    #avatar-learn,
+    #avatar-challenge {
       width: 96px;
       height: 96px;
       object-fit: contain;
@@ -172,10 +200,11 @@
 
     /* Learn card */
     #learn-card {
-      background: #f9fafb;
-      border-radius: 16px;
-      padding: 12px;
+      background: #fff7fb;
+      border-radius: 18px;
+      padding: 14px;
       text-align: center;
+      border: 1px solid #ffe0f2;
     }
 
     #lesson-img {
@@ -189,6 +218,7 @@
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 4px;
+      color: #ff7a7a;
     }
 
     #lesson-meaning {
@@ -217,6 +247,7 @@
       font-size: 22px;
       font-weight: 700;
       margin: 8px 0 12px;
+      color: #ff7a7a;
     }
 
     #options {
@@ -230,25 +261,29 @@
       text-align: center;
       font-size: 13px;
       padding: 10px 6px;
-      background: #f5f5f5;
-      color: #333;
-      border-radius: 12px;
+      background: #fdf5ff;
+      color: #5b4ea3;
+      border-radius: 14px;
+      border: 1px solid transparent;
     }
 
     .option.correct {
-      background: #d4f8d4;
+      background: #e1ffe8;
       color: #1b7a1b;
+      border-color: #9be7b0;
     }
 
     .option.wrong {
-      background: #ffd6d6;
+      background: #ffe1e1;
       color: #b00020;
+      border-color: #ff9b9b;
     }
 
     /* Result screen */
     #results-list {
       margin-top: 8px;
       font-size: 13px;
+      list-style: none;
     }
 
     #results-list li {
@@ -263,19 +298,6 @@
       flex-wrap: wrap;
     }
 
-    /* Profile */
-    #profile-box {
-      background: #f9fafb;
-      border-radius: 12px;
-      padding: 8px 10px;
-      font-size: 12px;
-      margin-bottom: 12px;
-    }
-
-    #profile-box div {
-      margin-bottom: 2px;
-    }
-
     /* Responsive */
     @media (max-width: 480px) {
       #app {
@@ -288,52 +310,45 @@
 </head>
 <body>
   <div id="app">
-    <!-- صفحه شروع -->
+    <!-- START SCREEN -->
     <div id="screen-start" class="screen active">
       <div class="logo">Anfo</div>
-      <div class="subtitle">بازی آموزش زبان با کاراکتر گوگولی</div>
-
-      <div id="profile-box">
-        <div><strong>پروفایل:</strong> <span id="profile-name-label">مهمان</span></div>
-        <div>بیشترین امتیاز: <span id="profile-best-score">0</span></div>
-        <div>کل بازی‌ها: <span id="profile-total-games">0</span></div>
-      </div>
+      <div class="subtitle">Cute word game for learning English</div>
 
       <div class="section center">
-        <h3>انتخاب سطح</h3>
+        <h3>Choose level</h3>
         <div class="chips" id="level-chips">
-          <div class="chip selected" data-level="beginner">مبتدی</div>
-          <div class="chip" data-level="intermediate">متوسط</div>
+          <div class="chip selected" data-level="beginner">Beginner</div>
+          <div class="chip" data-level="intermediate">Intermediate</div>
         </div>
       </div>
 
       <div class="section center">
-        <h3>انتخاب موضوع</h3>
+        <h3>Choose topic</h3>
         <div class="chips" id="topic-chips">
-          <div class="chip selected" data-topic="daily">روزمره</div>
-          <div class="chip" data-topic="food">غذا</div>
-          <div class="chip" data-topic="travel">سفر</div>
+          <div class="chip selected" data-topic="daily">Daily</div>
+          <div class="chip" data-topic="food">Food</div>
+          <div class="chip" data-topic="travel">Travel</div>
         </div>
       </div>
 
       <div class="section center">
-        <button id="btn-start-learn">شروع آموزش</button>
-      </div>
-
-      <div class="section center">
-        <button class="btn-secondary" id="btn-edit-name">ویرایش نام پروفایل</button>
+        <button id="btn-start-learn">Start learning</button>
       </div>
     </div>
 
-    <!-- صفحه آموزش -->
+    <!-- LEARN SCREEN -->
     <div id="screen-learn" class="screen">
       <div id="top-bar">
-        <span id="score-learn">آموزش</span>
-        <span id="profile-mini"></span>
+        <span style="font-size:12px; color:#8a7bb8;">Learn mode</span>
+        <div id="progress-container">
+          <div id="progress-bar"></div>
+        </div>
+        <span id="progress-label">0 / 0</span>
       </div>
 
       <div id="avatar-container">
-        <img id="avatar" src="avatar_neutral.png" alt="avatar" />
+        <img id="avatar-learn" src="avatar_neutral.png" alt="avatar" />
       </div>
 
       <div id="learn-card">
@@ -342,29 +357,32 @@
         <div id="lesson-meaning"></div>
         <div id="lesson-sentence"></div>
         <div class="learn-actions">
-          <button id="btn-play-audio">پخش تلفظ</button>
-          <button class="btn-secondary" id="btn-next-lesson">بعدی</button>
+          <button id="btn-play-audio">Play audio</button>
+          <button class="btn-secondary" id="btn-next-lesson">Next</button>
         </div>
       </div>
 
       <div class="actions-row">
-        <button id="btn-go-challenge" style="display:none;">برو به چالش 🔥</button>
-        <button class="btn-secondary" id="btn-back-start">بازگشت</button>
+        <button id="btn-go-challenge" style="display:none;">Go to challenge 🔥</button>
+        <button class="btn-secondary" id="btn-back-start">Back</button>
       </div>
     </div>
 
-    <!-- صفحه چالش -->
+    <!-- CHALLENGE SCREEN -->
     <div id="screen-challenge" class="screen">
       <div id="top-bar">
-        <span id="score">امتیاز: 0</span>
-        <span id="timer">۶</span>
+        <span style="font-size:12px; color:#8a7bb8;">Challenge</span>
+        <div id="progress-container">
+          <div id="progress-bar-challenge"></div>
+        </div>
+        <span id="timer">6</span>
       </div>
 
       <div id="avatar-container">
         <img id="avatar-challenge" src="avatar_neutral.png" alt="avatar" />
       </div>
 
-      <div id="challenge-word">کلمه</div>
+      <div id="challenge-word">word</div>
 
       <div id="options">
         <button class="option"></button>
@@ -374,138 +392,44 @@
       </div>
 
       <div class="actions-row">
-        <button class="btn-secondary" id="btn-exit-challenge">خروج</button>
+        <button class="btn-secondary" id="btn-exit-challenge">Exit</button>
       </div>
     </div>
 
-    <!-- صفحه نتیجه -->
+    <!-- RESULT SCREEN -->
     <div id="screen-result" class="screen">
-      <h2>نتیجه مرحله</h2>
+      <h2>Stage result</h2>
       <div class="center" style="margin-top:8px;">
-        <div>امتیاز نهایی: <strong id="final-score">0</strong></div>
-        <div>دقت: <strong id="final-accuracy">0%</strong></div>
+        <div>Score: <strong id="final-score">0</strong></div>
+        <div>Accuracy: <strong id="final-accuracy">0%</strong></div>
       </div>
 
       <div class="section">
-        <h3 style="font-size:14px; margin-bottom:4px;">کلمات اشتباه</h3>
+        <h3 style="font-size:14px; margin-bottom:4px;">Wrong words</h3>
         <ul id="results-list"></ul>
       </div>
 
       <div class="actions-row">
-        <button id="btn-repeat-wrong">تکرار اشتباه‌ها 🔁</button>
-        <button class="btn-secondary" id="btn-play-again">بازی دوباره</button>
-        <button class="btn-secondary" id="btn-back-home">بازگشت به خانه</button>
+        <button id="btn-repeat-wrong">Repeat wrong 🔁</button>
+        <button class="btn-secondary" id="btn-play-again">Play again</button>
+        <button class="btn-secondary" id="btn-back-home">Home</button>
       </div>
     </div>
   </div>
 
-  <!-- صداها (فایل‌ها رو خودت اضافه کن) -->
+  <!-- SFX (optional, add your own files) -->
   <audio id="sfx-correct" src="sfx_correct.mp3"></audio>
   <audio id="sfx-wrong" src="sfx_wrong.mp3"></audio>
   <audio id="sfx-click" src="sfx_click.mp3"></audio>
 
+  <!-- WORDS DATA (external file) -->
+  <script src="words.js"></script>
+
   <script>
-    // -----------------------------
-    // داده‌ها: درس‌ها بر اساس سطح و موضوع
-    // -----------------------------
-    const lessonsData = {
-      beginner: {
-        daily: [
-          {
-            word: "hello",
-            meaning: "سلام",
-            sentence: "Hello, how are you?",
-            image: "img_hello.png",
-            audio: "hello.mp3"
-          },
-          {
-            word: "thanks",
-            meaning: "متشکرم",
-            sentence: "Thanks for your help.",
-            image: "img_thanks.png",
-            audio: "thanks.mp3"
-          },
-          {
-            word: "sorry",
-            meaning: "ببخشید",
-            sentence: "I am sorry for being late.",
-            image: "img_sorry.png",
-            audio: "sorry.mp3"
-          },
-          {
-            word: "yes",
-            meaning: "بله",
-            sentence: "Yes, I agree with you.",
-            image: "img_yes.png",
-            audio: "yes.mp3"
-          },
-          {
-            word: "no",
-            meaning: "نه",
-            sentence: "No, I don't want it.",
-            image: "img_no.png",
-            audio: "no.mp3"
-          }
-        ],
-        food: [
-          {
-            word: "apple",
-            meaning: "سیب",
-            sentence: "I eat an apple every morning.",
-            image: "img_apple.png",
-            audio: "apple.mp3"
-          },
-          {
-            word: "bread",
-            meaning: "نان",
-            sentence: "I like fresh bread.",
-            image: "img_bread.png",
-            audio: "bread.mp3"
-          }
-        ],
-        travel: [
-          {
-            word: "ticket",
-            meaning: "بلیت",
-            sentence: "I bought a ticket to Paris.",
-            image: "img_ticket.png",
-            audio: "ticket.mp3"
-          }
-        ]
-      },
-      intermediate: {
-        daily: [
-          {
-            word: "schedule",
-            meaning: "برنامه‌ریزی",
-            sentence: "I have a busy schedule this week.",
-            image: "img_schedule.png",
-            audio: "schedule.mp3"
-          }
-        ],
-        food: [
-          {
-            word: "ingredient",
-            meaning: "مواد اولیه",
-            sentence: "We need fresh ingredients for this recipe.",
-            image: "img_ingredient.png",
-            audio: "ingredient.mp3"
-          }
-        ],
-        travel: [
-          {
-            word: "destination",
-            meaning: "مقصد",
-            sentence: "Our destination is a small island.",
-            image: "img_destination.png",
-            audio: "destination.mp3"
-          }
-        ]
-      }
-    };
+    // words.js must define: const WORDS_DATA = { beginner: { daily: [...], ... }, intermediate: {...} };
 
     // -----------------------------
-    // وضعیت کلی بازی
+    // State
     // -----------------------------
     let currentLevel = "beginner";
     let currentTopic = "daily";
@@ -519,17 +443,10 @@
     let totalQuestions = 0;
     let correctAnswers = 0;
     let timerInterval = null;
-    let timePerQuestion = 6;
-
-    // پروفایل
-    let profile = {
-      name: "مهمان",
-      bestScore: 0,
-      totalGames: 0
-    };
+    const timePerQuestion = 6;
 
     // -----------------------------
-    // المان‌ها
+    // Elements
     // -----------------------------
     const screenStart = document.getElementById("screen-start");
     const screenLearn = document.getElementById("screen-learn");
@@ -540,12 +457,9 @@
     const topicChips = document.getElementById("topic-chips");
 
     const btnStartLearn = document.getElementById("btn-start-learn");
-    const btnEditName = document.getElementById("btn-edit-name");
 
-    const profileNameLabel = document.getElementById("profile-name-label");
-    const profileBestScore = document.getElementById("profile-best-score");
-    const profileTotalGames = document.getElementById("profile-total-games");
-    const profileMini = document.getElementById("profile-mini");
+    const progressBarLearn = document.getElementById("progress-bar");
+    const progressLabelLearn = document.getElementById("progress-label");
 
     const lessonImg = document.getElementById("lesson-img");
     const lessonWord = document.getElementById("lesson-word");
@@ -556,10 +470,10 @@
     const btnGoChallenge = document.getElementById("btn-go-challenge");
     const btnBackStart = document.getElementById("btn-back-start");
 
-    const avatarLearn = document.getElementById("avatar");
+    const avatarLearn = document.getElementById("avatar-learn");
     const avatarChallenge = document.getElementById("avatar-challenge");
 
-    const scoreLabel = document.getElementById("score");
+    const progressBarChallenge = document.getElementById("progress-bar-challenge");
     const timerLabel = document.getElementById("timer");
     const challengeWord = document.getElementById("challenge-word");
     const optionButtons = document.querySelectorAll(".option");
@@ -577,7 +491,7 @@
     const sfxClick = document.getElementById("sfx-click");
 
     // -----------------------------
-    // توابع کمکی
+    // Helpers
     // -----------------------------
     function showScreen(screen) {
       [screenStart, screenLearn, screenChallenge, screenResult].forEach(s => s.classList.remove("active"));
@@ -602,24 +516,23 @@
       targetImg.classList.add("avatar-bounce");
     }
 
-    function loadProfile() {
-      const saved = localStorage.getItem("anfo_profile");
-      if (saved) {
-        profile = JSON.parse(saved);
-      }
-      profileNameLabel.textContent = profile.name;
-      profileBestScore.textContent = profile.bestScore;
-      profileTotalGames.textContent = profile.totalGames;
-      profileMini.textContent = profile.name + " | Best: " + profile.bestScore;
+    function updateLearnProgress() {
+      const total = lessons.length || 1;
+      const current = currentLessonIndex + 1;
+      const percent = (current / total) * 100;
+      progressBarLearn.style.width = percent + "%";
+      progressLabelLearn.textContent = current + " / " + total;
     }
 
-    function saveProfile() {
-      localStorage.setItem("anfo_profile", JSON.stringify(profile));
-      loadProfile();
+    function updateChallengeProgress() {
+      const total = totalQuestions || 1;
+      const current = currentQuestionIndex;
+      const percent = (current / total) * 100;
+      progressBarChallenge.style.width = percent + "%";
     }
 
     // -----------------------------
-    // انتخاب سطح و موضوع
+    // Level & topic selection
     // -----------------------------
     levelChips.addEventListener("click", (e) => {
       const chip = e.target.closest(".chip");
@@ -640,13 +553,18 @@
     });
 
     // -----------------------------
-    // شروع آموزش
+    // Start learning
     // -----------------------------
     btnStartLearn.addEventListener("click", () => {
       playSfx(sfxClick);
-      lessons = (lessonsData[currentLevel] && lessonsData[currentLevel][currentTopic]) || [];
+      if (!window.WORDS_DATA) {
+        alert("WORDS_DATA is not defined. Please include words.js.");
+        return;
+      }
+      const levelData = WORDS_DATA[currentLevel] || {};
+      lessons = levelData[currentTopic] || [];
       if (!lessons.length) {
-        alert("برای این سطح و موضوع هنوز درسی تعریف نشده.");
+        alert("No words for this level/topic yet.");
         return;
       }
       currentLessonIndex = 0;
@@ -667,6 +585,7 @@
       lessonMeaning.textContent = l.meaning;
       lessonSentence.textContent = l.sentence;
       btnGoChallenge.style.display = (currentLessonIndex >= lessons.length - 1) ? "inline-block" : "none";
+      updateLearnProgress();
     }
 
     btnNextLesson.addEventListener("click", () => {
@@ -675,8 +594,8 @@
         currentLessonIndex++;
         showLesson();
       } else {
-        btnGoChallenge.style.display = "inline-block";
         setAvatarMood(avatarLearn, "happy");
+        btnGoChallenge.style.display = "inline-block";
       }
     });
 
@@ -694,7 +613,7 @@
     });
 
     // -----------------------------
-    // چالش
+    // Challenge
     // -----------------------------
     function startChallenge(fromWrongOnly) {
       showScreen(screenChallenge);
@@ -712,12 +631,8 @@
 
       totalQuestions = questions.length;
       currentQuestionIndex = 0;
-      updateScoreLabel();
+      progressBarChallenge.style.width = "0%";
       loadQuestion();
-    }
-
-    function updateScoreLabel() {
-      scoreLabel.textContent = "امتیاز: " + score;
     }
 
     function loadQuestion() {
@@ -730,6 +645,8 @@
         endChallenge();
         return;
       }
+
+      updateChallengeProgress();
 
       const q = questions[currentQuestionIndex];
       challengeWord.textContent = q.word;
@@ -803,8 +720,6 @@
         playSfx(sfxWrong);
       }
 
-      updateScoreLabel();
-
       setTimeout(() => {
         currentQuestionIndex++;
         loadQuestion();
@@ -814,14 +729,13 @@
     function endChallenge() {
       showScreen(screenResult);
       finalScoreLabel.textContent = score;
-
       const accuracy = totalQuestions ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
       finalAccuracyLabel.textContent = accuracy + "%";
 
       resultsList.innerHTML = "";
       if (!wrongWords.length) {
         const li = document.createElement("li");
-        li.textContent = "هیچ کلمه‌ای را اشتباه نزدی! 👏";
+        li.textContent = "No wrong words. Great job! 🎉";
         resultsList.appendChild(li);
       } else {
         wrongWords.forEach(w => {
@@ -830,12 +744,6 @@
           resultsList.appendChild(li);
         });
       }
-
-      profile.totalGames += 1;
-      if (score > profile.bestScore) {
-        profile.bestScore = score;
-      }
-      saveProfile();
     }
 
     btnExitChallenge.addEventListener("click", () => {
@@ -850,7 +758,7 @@
     btnRepeatWrong.addEventListener("click", () => {
       playSfx(sfxClick);
       if (!wrongWords.length) {
-        alert("کلمه اشتباهی برای تکرار وجود ندارد.");
+        alert("No wrong words to repeat.");
         return;
       }
       startChallenge(true);
@@ -865,23 +773,6 @@
       playSfx(sfxClick);
       showScreen(screenStart);
     });
-
-    // -----------------------------
-    // پروفایل
-    // -----------------------------
-    btnEditName.addEventListener("click", () => {
-      playSfx(sfxClick);
-      const newName = prompt("نام پروفایل را وارد کن:", profile.name);
-      if (newName && newName.trim()) {
-        profile.name = newName.trim();
-        saveProfile();
-      }
-    });
-
-    // -----------------------------
-    // شروع
-    // -----------------------------
-    loadProfile();
   </script>
 </body>
 </html>
