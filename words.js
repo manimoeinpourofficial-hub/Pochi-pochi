@@ -1,77 +1,114 @@
 // words.js
-// You can freely edit/extend this file.
+// 100 beginner-level words for Anfo Word Rush
 
 const WORDS_DATA = {
   beginner: {
     daily: [
-      {
-        word: "hello",
-        meaning: "سلام",
-        sentence: "Hello, how are you?",
-        image: "img_hello.png",
-        audio: "hello.mp3"
-      },
-      {
-        word: "thanks",
-        meaning: "متشکرم",
-        sentence: "Thanks for your help.",
-        image: "img_thanks.png",
-        audio: "thanks.mp3"
-      },
-      {
-        word: "sorry",
-        meaning: "ببخشید",
-        sentence: "I am sorry for being late.",
-        image: "img_sorry.png",
-        audio: "sorry.mp3"
-      }
+      { word: "hello", meaning: "سلام", sentence: "Hello, how are you?" },
+      { word: "goodbye", meaning: "خداحافظ", sentence: "Goodbye, see you later." },
+      { word: "please", meaning: "لطفاً", sentence: "Please give me the book." },
+      { word: "thanks", meaning: "متشکرم", sentence: "Thanks for your help." },
+      { word: "sorry", meaning: "ببخشید", sentence: "Sorry for being late." },
+      { word: "yes", meaning: "بله", sentence: "Yes, I agree." },
+      { word: "no", meaning: "نه", sentence: "No, I don't want it." },
+      { word: "friend", meaning: "دوست", sentence: "He is my best friend." },
+      { word: "family", meaning: "خانواده", sentence: "My family is very important to me." },
+      { word: "home", meaning: "خانه", sentence: "I am going home now." },
+      { word: "school", meaning: "مدرسه", sentence: "I walk to school every day." },
+      { word: "work", meaning: "کار", sentence: "I work in an office." },
+      { word: "happy", meaning: "خوشحال", sentence: "I feel happy today." },
+      { word: "sad", meaning: "غمگین", sentence: "She looks sad." },
+      { word: "tired", meaning: "خسته", sentence: "I am tired after work." },
+      { word: "morning", meaning: "صبح", sentence: "I wake up early in the morning." },
+      { word: "night", meaning: "شب", sentence: "Good night, sleep well." },
+      { word: "today", meaning: "امروز", sentence: "Today is a good day." },
+      { word: "tomorrow", meaning: "فردا", sentence: "I will call you tomorrow." },
+      { word: "yesterday", meaning: "دیروز", sentence: "Yesterday was fun." },
+      { word: "water", meaning: "آب", sentence: "I need some water." },
+      { word: "phone", meaning: "تلفن", sentence: "My phone is charging." },
+      { word: "time", meaning: "زمان", sentence: "What time is it?" },
+      { word: "money", meaning: "پول", sentence: "I don't have enough money." },
+      { word: "love", meaning: "عشق", sentence: "I love my family." },
+      { word: "name", meaning: "نام", sentence: "What is your name?" },
+      { word: "city", meaning: "شهر", sentence: "This city is beautiful." },
+      { word: "street", meaning: "خیابان", sentence: "I live on this street." },
+      { word: "car", meaning: "ماشین", sentence: "My car is new." },
+      { word: "bus", meaning: "اتوبوس", sentence: "The bus is late." },
+      { word: "walk", meaning: "راه رفتن", sentence: "I walk every morning." },
+      { word: "run", meaning: "دویدن", sentence: "I run to stay healthy." },
+      { word: "read", meaning: "خواندن", sentence: "I read books at night." }
     ],
+
     food: [
-      {
-        word: "apple",
-        meaning: "سیب",
-        sentence: "I eat an apple every morning.",
-        image: "img_apple.png",
-        audio: "apple.mp3"
-      }
+      { word: "apple", meaning: "سیب", sentence: "I eat an apple every day." },
+      { word: "banana", meaning: "موز", sentence: "Bananas are yellow." },
+      { word: "orange", meaning: "پرتقال", sentence: "I like orange juice." },
+      { word: "bread", meaning: "نان", sentence: "I bought fresh bread." },
+      { word: "rice", meaning: "برنج", sentence: "We eat rice for lunch." },
+      { word: "egg", meaning: "تخم‌مرغ", sentence: "I had eggs for breakfast." },
+      { word: "milk", meaning: "شیر", sentence: "Milk is good for health." },
+      { word: "tea", meaning: "چای", sentence: "I drink tea every morning." },
+      { word: "coffee", meaning: "قهوه", sentence: "Coffee wakes me up." },
+      { word: "chicken", meaning: "مرغ", sentence: "I like grilled chicken." },
+      { word: "meat", meaning: "گوشت", sentence: "Meat is expensive." },
+      { word: "fish", meaning: "ماهی", sentence: "Fish is healthy." },
+      { word: "soup", meaning: "سوپ", sentence: "I made vegetable soup." },
+      { word: "salad", meaning: "سالاد", sentence: "I eat salad every night." },
+      { word: "pizza", meaning: "پیتزا", sentence: "Pizza is my favorite food." },
+      { word: "burger", meaning: "برگر", sentence: "I ordered a burger." },
+      { word: "cheese", meaning: "پنیر", sentence: "Cheese is delicious." },
+      { word: "butter", meaning: "کره", sentence: "I put butter on bread." },
+      { word: "salt", meaning: "نمک", sentence: "Add some salt." },
+      { word: "sugar", meaning: "شکر", sentence: "Too much sugar is bad." },
+      { word: "juice", meaning: "آبمیوه", sentence: "I like fresh juice." },
+      { word: "watermelon", meaning: "هندوانه", sentence: "Watermelon is sweet." },
+      { word: "grape", meaning: "انگور", sentence: "Grapes are tasty." },
+      { word: "lemon", meaning: "لیمو", sentence: "Lemon is sour." },
+      { word: "tomato", meaning: "گوجه", sentence: "Tomatoes are red." },
+      { word: "potato", meaning: "سیب‌زمینی", sentence: "Potatoes are cheap." },
+      { word: "onion", meaning: "پیاز", sentence: "Onions make me cry." },
+      { word: "carrot", meaning: "هویج", sentence: "Carrots are orange." },
+      { word: "pepper", meaning: "فلفل", sentence: "Pepper is spicy." },
+      { word: "ice cream", meaning: "بستنی", sentence: "I love ice cream." },
+      { word: "chocolate", meaning: "شکلات", sentence: "Chocolate is sweet." },
+      { word: "cookie", meaning: "کوکی", sentence: "I baked cookies." },
+      { word: "honey", meaning: "عسل", sentence: "Honey is natural sugar." }
     ],
+
     travel: [
-      {
-        word: "ticket",
-        meaning: "بلیت",
-        sentence: "I bought a ticket to Paris.",
-        image: "img_ticket.png",
-        audio: "ticket.mp3"
-      }
-    ]
-  },
-  intermediate: {
-    daily: [
-      {
-        word: "schedule",
-        meaning: "برنامه‌ریزی",
-        sentence: "I have a busy schedule this week.",
-        image: "img_schedule.png",
-        audio: "schedule.mp3"
-      }
-    ],
-    food: [
-      {
-        word: "ingredient",
-        meaning: "مواد اولیه",
-        sentence: "We need fresh ingredients for this recipe.",
-        image: "img_ingredient.png",
-        audio: "ingredient.mp3"
-      }
-    ],
-    travel: [
-      {
-        word: "destination",
-        meaning: "مقصد",
-        sentence: "Our destination is a small island.",
-        image: "img_destination.png",
-        audio: "destination.mp3"
-      }
+      { word: "ticket", meaning: "بلیت", sentence: "I bought a ticket to Paris." },
+      { word: "airport", meaning: "فرودگاه", sentence: "The airport is crowded." },
+      { word: "flight", meaning: "پرواز", sentence: "My flight is delayed." },
+      { word: "hotel", meaning: "هتل", sentence: "We booked a hotel room." },
+      { word: "room", meaning: "اتاق", sentence: "Our room is clean." },
+      { word: "passport", meaning: "پاسپورت", sentence: "Don't forget your passport." },
+      { word: "bag", meaning: "کیف", sentence: "My bag is heavy." },
+      { word: "map", meaning: "نقشه", sentence: "I need a map." },
+      { word: "train", meaning: "قطار", sentence: "The train is fast." },
+      { word: "station", meaning: "ایستگاه", sentence: "Meet me at the station." },
+      { word: "bus", meaning: "اتوبوس", sentence: "The bus arrives soon." },
+      { word: "taxi", meaning: "تاکسی", sentence: "We took a taxi." },
+      { word: "city", meaning: "شهر", sentence: "This city is beautiful." },
+      { word: "country", meaning: "کشور", sentence: "I love this country." },
+      { word: "beach", meaning: "ساحل", sentence: "The beach is relaxing." },
+      { word: "sea", meaning: "دریا", sentence: "The sea is blue." },
+      { word: "mountain", meaning: "کوه", sentence: "The mountain is high." },
+      { word: "island", meaning: "جزیره", sentence: "We visited an island." },
+      { word: "tour", meaning: "تور", sentence: "We joined a city tour." },
+      { word: "guide", meaning: "راهنما", sentence: "The guide was helpful." },
+      { word: "camera", meaning: "دوربین", sentence: "I forgot my camera." },
+      { word: "photo", meaning: "عکس", sentence: "I took many photos." },
+      { word: "travel", meaning: "سفر", sentence: "I love to travel." },
+      { word: "visit", meaning: "بازدید", sentence: "We visited a museum." },
+      { word: "museum", meaning: "موزه", sentence: "The museum was amazing." },
+      { word: "park", meaning: "پارک", sentence: "We walked in the park." },
+      { word: "bridge", meaning: "پل", sentence: "The bridge is long." },
+      { word: "road", meaning: "جاده", sentence: "The road is empty." },
+      { word: "car", meaning: "ماشین", sentence: "We rented a car." },
+      { word: "driver", meaning: "راننده", sentence: "The driver was friendly." },
+      { word: "bag", meaning: "چمدان", sentence: "My bag is full." },
+      { word: "airport bus", meaning: "اتوبوس فرودگاه", sentence: "We took the airport bus." },
+      { word: "check-in", meaning: "چک‌این", sentence: "We checked in early." }
     ]
   }
 };
