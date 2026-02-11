@@ -8,24 +8,26 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ————————————————————————————————
-       CUTE PASTEL UI (FULL CSS)
-       ———————————————————————————————— */
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: "Poppins", sans-serif;
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     body {
-      background: radial-gradient(circle at top, #ffe6f7 0, #fffdf5 40%, #ffeef7 100%);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      background: radial-gradient(circle at top, #ffe6f7 0, #fffdf5 40%, #ffeef7 100%);
       color: #333;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    body.dark {
+      background: radial-gradient(circle at top, #141625 0, #111119 40%, #050509 100%);
+      color: #f5f5f7;
     }
 
     #app {
@@ -39,12 +41,25 @@
       border: 2px solid #ffd6ec;
       position: relative;
       overflow: hidden;
+      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    body.dark #app {
+      background: #181827;
+      border-color: #2f3148;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.7);
     }
 
     h1, h2, h3 {
       text-align: center;
       margin-bottom: 10px;
       color: #ff6f91;
+    }
+
+    body.dark h1,
+    body.dark h2,
+    body.dark h3 {
+      color: #ff9ac4;
     }
 
     .logo {
@@ -56,11 +71,55 @@
       letter-spacing: 0.06em;
     }
 
+    body.dark .logo {
+      color: #ff9ac4;
+    }
+
     .subtitle {
       text-align: center;
       font-size: 13px;
       color: #9b7b9f;
       margin-bottom: 16px;
+    }
+
+    body.dark .subtitle {
+      color: #b9b4d8;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .mode-toggle {
+      font-size: 12px;
+      cursor: pointer;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #ffd6ec;
+      background: #fff5fb;
+      color: #ff6f91;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.15s ease;
+    }
+
+    .mode-toggle span {
+      font-size: 11px;
+    }
+
+    body.dark .mode-toggle {
+      background: #23243a;
+      border-color: #343654;
+      color: #ff9ac4;
+    }
+
+    .mode-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 154, 162, 0.4);
     }
 
     button {
@@ -71,7 +130,7 @@
       cursor: pointer;
       background: linear-gradient(135deg, #ff9aa2, #ffb7b2);
       color: #fff;
-      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease, background 0.2s ease;
       box-shadow: 0 6px 16px rgba(255, 154, 162, 0.5);
     }
 
@@ -91,6 +150,12 @@
       background: linear-gradient(135deg, #fce1ff, #ffe6f7);
       color: #ff6f91;
       box-shadow: 0 4px 14px rgba(255, 182, 193, 0.4);
+    }
+
+    body.dark .btn-secondary {
+      background: linear-gradient(135deg, #262842, #343654);
+      color: #ff9ac4;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
     }
 
     .screen {
@@ -133,6 +198,19 @@
       box-shadow: 0 4px 14px rgba(255, 154, 162, 0.6);
     }
 
+    body.dark .chip {
+      background: #23243a;
+      border-color: #343654;
+      color: #ff9ac4;
+    }
+
+    body.dark .chip.selected {
+      background: linear-gradient(135deg, #ff6f91, #ff9ac4);
+      border-color: #ff6f91;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+    }
+
     .actions-row {
       display: flex;
       justify-content: center;
@@ -141,7 +219,6 @@
       flex-wrap: wrap;
     }
 
-    /* Learn card */
     #learn-card {
       background: linear-gradient(145deg, #fff5fb, #ffeef7);
       padding: 20px;
@@ -152,11 +229,21 @@
       box-shadow: 0 10px 24px rgba(255, 182, 193, 0.4);
     }
 
+    body.dark #learn-card {
+      background: linear-gradient(145deg, #23243a, #1b1c2d);
+      border-color: #343654;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.7);
+    }
+
     #learn-word {
       font-size: 28px;
       font-weight: 700;
       color: #ff6f91;
       margin-bottom: 8px;
+    }
+
+    body.dark #learn-word {
+      color: #ff9ac4;
     }
 
     #learn-meaning {
@@ -165,18 +252,29 @@
       margin-bottom: 6px;
     }
 
+    body.dark #learn-meaning {
+      color: #e0deff;
+    }
+
     #learn-index {
       font-size: 12px;
       color: #a88fb0;
     }
 
-    /* Game UI */
+    body.dark #learn-index {
+      color: #b9b4d8;
+    }
+
     #record-label {
       text-align: center;
       font-size: 13px;
       color: #ff9aa2;
       margin-bottom: 4px;
       font-weight: 600;
+    }
+
+    body.dark #record-label {
+      color: #ff9ac4;
     }
 
     #stats-label {
@@ -186,14 +284,22 @@
       margin-bottom: 8px;
     }
 
+    body.dark #stats-label {
+      color: #b9b4d8;
+    }
+
     #avatar-game {
-      width: 150px;
-      height: 150px;
+      width: 170px;
+      height: 170px;
       object-fit: contain;
       margin: 6px auto 4px;
       display: block;
       transition: 0.2s ease;
       filter: drop-shadow(0 10px 24px rgba(255, 182, 193, 0.7));
+    }
+
+    body.dark #avatar-game {
+      filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.9));
     }
 
     .avatar-bounce {
@@ -214,6 +320,10 @@
       color: #ff6f91;
       margin-bottom: 14px;
       animation: popIn 0.3s ease;
+    }
+
+    body.dark #game-word {
+      color: #ff9ac4;
     }
 
     @keyframes popIn {
@@ -246,11 +356,30 @@
       border-color: #ff9aa2;
     }
 
+    body.dark .option {
+      background: #23243a;
+      border-color: #343654;
+      color: #ff9ac4;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+    }
+
+    body.dark .option:hover {
+      border-color: #ff6f91;
+      box-shadow: 0 7px 18px rgba(0, 0, 0, 0.9);
+    }
+
     .option.correct {
       background: #e3ffe9;
       border-color: #7bd88f;
       color: #2f7d3b;
       box-shadow: 0 6px 18px rgba(123, 216, 143, 0.7);
+    }
+
+    body.dark .option.correct {
+      background: #1f3a2a;
+      border-color: #7bd88f;
+      color: #a8f5b8;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.9);
     }
 
     .option.wrong {
@@ -261,6 +390,13 @@
       animation: shake 0.25s ease;
     }
 
+    body.dark .option.wrong {
+      background: #3a1f26;
+      border-color: #ff6f91;
+      color: #ffb3c4;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.9);
+    }
+
     @keyframes shake {
       0% { transform: translateX(0); }
       25% { transform: translateX(-3px); }
@@ -269,7 +405,6 @@
       100% { transform: translateX(0); }
     }
 
-    /* Timer bar */
     #timer-container {
       width: 100%;
       height: 9px;
@@ -280,6 +415,11 @@
       border: 1px solid #ffd6ec;
     }
 
+    body.dark #timer-container {
+      background: #23243a;
+      border-color: #343654;
+    }
+
     #timer-bar {
       height: 100%;
       width: 100%;
@@ -287,7 +427,10 @@
       transition: width linear;
     }
 
-    /* Result */
+    body.dark #timer-bar {
+      background: linear-gradient(90deg, #ff6f91, #ff9ac4, #ffc3e0);
+    }
+
     #results-list {
       margin-top: 10px;
       list-style: none;
@@ -301,11 +444,18 @@
       color: #7b5f86;
     }
 
+    body.dark #results-list li {
+      color: #d0c9f5;
+    }
+
     .center {
       text-align: center;
     }
 
     @media (max-width: 480px) {
+      body {
+        padding: 0;
+      }
       #app {
         border-radius: 0;
         max-width: 100%;
@@ -317,11 +467,17 @@
 
 <body>
   <div id="app">
+    <div class="top-bar">
+      <div style="font-size:12px;color:#b08aa8;">Anfo • pochi pochi</div>
+      <button id="btn-toggle-mode" class="mode-toggle">
+        <span id="mode-label">Light</span> 🌙
+      </button>
+    </div>
 
     <!-- START SCREEN -->
     <div id="screen-start" class="screen active">
       <div class="logo">Anfo</div>
-      <div class="subtitle">Cute pastel word garden</div>
+      <div class="subtitle">are you ready pochi pochi</div>
 
       <h3>Choose level</h3>
       <div class="chips" id="level-chips">
@@ -368,7 +524,7 @@
       <div id="record-label">Best: 0</div>
       <div id="stats-label">Wrong 0 / 0</div>
 
-      <img id="avatar-game" src="https://i.imgur.com/4AiXzf8.png" alt="avatar" />
+      <img id="avatar-game" src="assets/avatar_neutral.png" alt="avatar" />
 
       <div id="game-word">word</div>
 
@@ -407,12 +563,9 @@
         <button id="btn-back-home" class="btn-secondary">Home</button>
       </div>
     </div>
-
   </div>
 
-  <!-- ————————————————————————————————
-       WORDS DATA (NO EXTERNAL FILE)
-       ———————————————————————————————— -->
+  <!-- WORDS DATA -->
   <script>
     const WORDS_DATA = {
       beginner: {
@@ -436,7 +589,17 @@
           { word: "tomorrow", meaning: "فردا" },
           { word: "yesterday", meaning: "دیروز" },
           { word: "water", meaning: "آب" },
-          { word: "phone", meaning: "تلفن" }
+          { word: "phone", meaning: "تلفن" },
+          { word: "music", meaning: "موسیقی" },
+          { word: "movie", meaning: "فیلم" },
+          { word: "game", meaning: "بازی" },
+          { word: "love", meaning: "عشق" },
+          { word: "time", meaning: "زمان" },
+          { word: "money", meaning: "پول" },
+          { word: "problem", meaning: "مشکل" },
+          { word: "idea", meaning: "ایده" },
+          { word: "question", meaning: "سؤال" },
+          { word: "answer", meaning: "جواب" }
         ],
         food: [
           { word: "apple", meaning: "سیب" },
@@ -458,13 +621,21 @@
           { word: "chocolate", meaning: "شکلات" },
           { word: "cookie", meaning: "کوکی" },
           { word: "honey", meaning: "عسل" },
-          { word: "ice cream", meaning: "بستنی" }
+          { word: "ice cream", meaning: "بستنی" },
+          { word: "egg", meaning: "تخم‌مرغ" },
+          { word: "butter", meaning: "کره" },
+          { word: "yogurt", meaning: "ماست" },
+          { word: "soup", meaning: "سوپ" },
+          { word: "sandwich", meaning: "ساندویچ" },
+          { word: "pasta", meaning: "پاستا" },
+          { word: "orange", meaning: "پرتقال" },
+          { word: "grape", meaning: "انگور" },
+          { word: "strawberry", meaning: "توت‌فرنگی" }
         ],
         travel: [
           { word: "ticket", meaning: "بلیت" },
           { word: "airport", meaning: "فرودگاه" },
           { word: "hotel", meaning: "هتل" },
-          { word: "passport", meaning: "پاسپورت
           { word: "passport", meaning: "پاسپورت" },
           { word: "map", meaning: "نقشه" },
           { word: "train", meaning: "قطار" },
@@ -481,7 +652,16 @@
           { word: "guide", meaning: "راهنما" },
           { word: "camera", meaning: "دوربین" },
           { word: "photo", meaning: "عکس" },
-          { word: "travel", meaning: "سفر" }
+          { word: "travel", meaning: "سفر" },
+          { word: "flight", meaning: "پرواز" },
+          { word: "luggage", meaning: "چمدان" },
+          { word: "border", meaning: "مرز" },
+          { word: "visa", meaning: "ویزا" },
+          { word: "reservation", meaning: "رزرو" },
+          { word: "tourist", meaning: "توریست" },
+          { word: "museum", meaning: "موزه" },
+          { word: "park", meaning: "پارک" },
+          { word: "bridge", meaning: "پل" }
         ]
       },
       intermediate: {
@@ -491,320 +671,343 @@
       }
     };
   </script>
-<script>
-  // ————————————————————————————————
-  // GAME LOGIC (FULL)
-  // ————————————————————————————————
 
-  let currentLevel = "beginner";
-  let currentTopic = "daily";
+  <!-- GAME LOGIC -->
+  <script>
+    let currentLevel = "beginner";
+    let currentTopic = "daily";
 
-  let learnList = [];
-  let learnIndex = 0;
+    let learnList = [];
+    let learnIndex = 0;
 
-  let gameQuestions = [];
-  let gameIndex = 0;
-  let wrongWords = [];
-  let wrongCount = 0;
-  let totalCount = 0;
-  let score = 0;
-  let bestScore = 0;
+    let gameQuestions = [];
+    let gameIndex = 0;
+    let wrongWords = [];
+    let wrongCount = 0;
+    let totalCount = 0;
+    let score = 0;
+    let bestScore = 0;
 
-  let timerInterval = null;
-  const timeLimit = 5;
+    let timerInterval = null;
+    const timeLimit = 15;
 
-  // DOM
-  const screenStart = document.getElementById("screen-start");
-  const screenLearn = document.getElementById("screen-learn");
-  const screenGame = document.getElementById("screen-game");
-  const screenResult = document.getElementById("screen-result");
+    const screenStart = document.getElementById("screen-start");
+    const screenLearn = document.getElementById("screen-learn");
+    const screenGame = document.getElementById("screen-game");
+    const screenResult = document.getElementById("screen-result");
 
-  const levelChips = document.getElementById("level-chips");
-  const topicChips = document.getElementById("topic-chips");
+    const levelChips = document.getElementById("level-chips");
+    const topicChips = document.getElementById("topic-chips");
 
-  const btnStartLearn = document.getElementById("btn-start-learn");
-  const btnStartGame = document.getElementById("btn-start-game");
+    const btnStartLearn = document.getElementById("btn-start-learn");
+    const btnStartGame = document.getElementById("btn-start-game");
 
-  const learnWordEl = document.getElementById("learn-word");
-  const learnMeaningEl = document.getElementById("learn-meaning");
-  const learnIndexEl = document.getElementById("learn-index");
+    const learnWordEl = document.getElementById("learn-word");
+    const learnMeaningEl = document.getElementById("learn-meaning");
+    const learnIndexEl = document.getElementById("learn-index");
 
-  const btnLearnPrev = document.getElementById("btn-learn-prev");
-  const btnLearnNext = document.getElementById("btn-learn-next");
-  const btnLearnRandom = document.getElementById("btn-learn-random");
-  const btnLearnBack = document.getElementById("btn-learn-back");
+    const btnLearnPrev = document.getElementById("btn-learn-prev");
+    const btnLearnNext = document.getElementById("btn-learn-next");
+    const btnLearnRandom = document.getElementById("btn-learn-random");
+    const btnLearnBack = document.getElementById("btn-learn-back");
 
-  const recordLabel = document.getElementById("record-label");
-  const statsLabel = document.getElementById("stats-label");
-  const avatarGame = document.getElementById("avatar-game");
-  const gameWordEl = document.getElementById("game-word");
-  const optionButtons = document.querySelectorAll(".option");
+    const recordLabel = document.getElementById("record-label");
+    const statsLabel = document.getElementById("stats-label");
+    const avatarGame = document.getElementById("avatar-game");
+    const gameWordEl = document.getElementById("game-word");
+    const optionButtons = document.querySelectorAll(".option");
 
-  const timerBar = document.getElementById("timer-bar");
-  const btnExitGame = document.getElementById("btn-exit-game");
+    const timerBar = document.getElementById("timer-bar");
+    const btnExitGame = document.getElementById("btn-exit-game");
 
-  const finalScoreLabel = document.getElementById("final-score");
-  const finalBestLabel = document.getElementById("final-best");
-  const finalWrongLabel = document.getElementById("final-wrong");
-  const finalTotalLabel = document.getElementById("final-total");
-  const resultsList = document.getElementById("results-list");
+    const finalScoreLabel = document.getElementById("final-score");
+    const finalBestLabel = document.getElementById("final-best");
+    const finalWrongLabel = document.getElementById("final-wrong");
+    const finalTotalLabel = document.getElementById("final-total");
+    const resultsList = document.getElementById("results-list");
 
-  const btnRepeatWrong = document.getElementById("btn-repeat-wrong");
-  const btnPlayAgain = document.getElementById("btn-play-again");
-  const btnBackHome = document.getElementById("btn-back-home");
+    const btnRepeatWrong = document.getElementById("btn-repeat-wrong");
+    const btnPlayAgain = document.getElementById("btn-play-again");
+    const btnBackHome = document.getElementById("btn-back-home");
 
-  // Helpers
-  function showScreen(screen) {
-    [screenStart, screenLearn, screenGame, screenResult].forEach(s => s.classList.remove("active"));
-    screen.classList.add("active");
-  }
+    const btnToggleMode = document.getElementById("btn-toggle-mode");
+    const modeLabel = document.getElementById("mode-label");
 
-  function shuffle(arr) {
-    return arr.slice().sort(() => Math.random() - 0.5);
-  }
+    function showScreen(screen) {
+      [screenStart, screenLearn, screenGame, screenResult].forEach(s => s.classList.remove("active"));
+      screen.classList.add("active");
+    }
 
-  function setAvatar(mood) {
-    let src = "https://i.imgur.com/4AiXzf8.png"; // neutral
-    if (mood === "happy") src = "https://i.imgur.com/4AiXzf8.png";
-    if (mood === "sad") src = "https://i.imgur.com/4AiXzf8.png";
-    if (mood === "super") src = "https://i.imgur.com/4AiXzf8.png";
+    function shuffle(arr) {
+      return arr.slice().sort(() => Math.random() - 0.5);
+    }
 
-    avatarGame.src = src;
-    avatarGame.classList.remove("avatar-bounce");
-    void avatarGame.offsetWidth;
-    avatarGame.classList.add("avatar-bounce");
-  }
+    function setAvatar(mood) {
+      let src = "assets/avatar_neutral.png";
+      if (mood === "happy") src = "assets/avatar_happy.png";
+      if (mood === "sad") src = "assets/avatar_sad.png";
+      if (mood === "super") src = "assets/avatar_super_happy.png";
 
-  function vibrate(ms) {
-    if (navigator.vibrate) navigator.vibrate(ms);
-  }
+      avatarGame.src = src;
+      avatarGame.classList.remove("avatar-bounce");
+      void avatarGame.offsetWidth;
+      avatarGame.classList.add("avatar-bounce");
+    }
 
-  // Level & topic selection
-  levelChips.addEventListener("click", e => {
-    const chip = e.target.closest(".chip");
-    if (!chip) return;
-    levelChips.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
-    chip.classList.add("selected");
-    currentLevel = chip.dataset.level;
-  });
+    function vibrate(ms) {
+      if (navigator.vibrate) navigator.vibrate(ms);
+    }
 
-  topicChips.addEventListener("click", e => {
-    const chip = e.target.closest(".chip");
-    if (!chip) return;
-    topicChips.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
-    chip.classList.add("selected");
-    currentTopic = chip.dataset.topic;
-  });
+    btnToggleMode.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      modeLabel.textContent = isDark ? "Dark" : "Light";
+      btnToggleMode.innerHTML = `<span id="mode-label">${isDark ? "Dark" : "Light"}</span> ${isDark ? "☀️" : "🌙"}`;
+    });
 
-  // LEARN
-  btnStartLearn.addEventListener("click", () => {
-    const list = WORDS_DATA[currentLevel][currentTopic];
-    if (!list.length) return alert("No words yet.");
+    levelChips.addEventListener("click", e => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      levelChips.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
+      chip.classList.add("selected");
+      currentLevel = chip.dataset.level;
+    });
 
-    learnList = shuffle(list);
-    learnIndex = 0;
-    showLearn();
-    showScreen(screenLearn);
-  });
+    topicChips.addEventListener("click", e => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      topicChips.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
+      chip.classList.add("selected");
+      currentTopic = chip.dataset.topic;
+    });
 
-  function showLearn() {
-    const item = learnList[learnIndex];
-    learnWordEl.textContent = item.word;
-    learnMeaningEl.textContent = item.meaning;
-    learnIndexEl.textContent = `${learnIndex + 1} / ${learnList.length}`;
-  }
-
-  btnLearnPrev.onclick = () => {
-    learnIndex = (learnIndex - 1 + learnList.length) % learnList.length;
-    showLearn();
-  };
-
-  btnLearnNext.onclick = () => {
-    learnIndex = (learnIndex + 1) % learnList.length;
-    showLearn();
-  };
-
-  btnLearnRandom.onclick = () => {
-    learnIndex = Math.floor(Math.random() * learnList.length);
-    showLearn();
-  };
-
-  btnLearnBack.onclick = () => showScreen(screenStart);
-
-  // GAME
-  btnStartGame.onclick = () => {
-    const list = WORDS_DATA[currentLevel][currentTopic];
-    if (!list.length) return alert("No words yet.");
-
-    gameQuestions = shuffle(list);
-    gameIndex = 0;
-    wrongWords = [];
-    wrongCount = 0;
-    totalCount = gameQuestions.length;
-    score = 0;
-
-    bestScore = parseInt(localStorage.getItem("anfo_best") || "0");
-    recordLabel.textContent = "Best: " + bestScore;
-
-    statsLabel.textContent = `Wrong 0 / ${totalCount}`;
-    setAvatar("neutral");
-
-    showScreen(screenGame);
-    loadGameQuestion();
-  };
-
-  function startTimer() {
-    clearInterval(timerInterval);
-    timerBar.style.transition = "none";
-    timerBar.style.width = "100%";
-
-    setTimeout(() => {
-      timerBar.style.transition = `width ${timeLimit}s linear`;
-      timerBar.style.width = "0%";
-    }, 50);
-
-    timerInterval = setInterval(() => {
-      if (timerBar.style.width === "0%") {
-        clearInterval(timerInterval);
-        handleTimeout();
+    btnStartLearn.addEventListener("click", () => {
+      const list = WORDS_DATA[currentLevel][currentTopic];
+      if (!list || !list.length) {
+        alert("No words for this level/topic yet.");
+        return;
       }
-    }, 200);
-  }
+      learnList = shuffle(list);
+      learnIndex = 0;
+      showLearn();
+      showScreen(screenLearn);
+    });
 
-  function handleTimeout() {
-    wrongCount++;
-    statsLabel.textContent = `Wrong ${wrongCount} / ${totalCount}`;
-    setAvatar("sad");
-    vibrate(120);
+    function showLearn() {
+      const item = learnList[learnIndex];
+      learnWordEl.textContent = item.word;
+      learnMeaningEl.textContent = item.meaning;
+      learnIndexEl.textContent = `${learnIndex + 1} / ${learnList.length}`;
+    }
 
-    wrongWords.push(gameQuestions[gameIndex]);
+    btnLearnPrev.onclick = () => {
+      learnIndex = (learnIndex - 1 + learnList.length) % learnList.length;
+      showLearn();
+    };
 
-    setTimeout(() => {
-      gameIndex++;
+    btnLearnNext.onclick = () => {
+      learnIndex = (learnIndex + 1) % learnList.length;
+      showLearn();
+    };
+
+    btnLearnRandom.onclick = () => {
+      learnIndex = Math.floor(Math.random() * learnList.length);
+      showLearn();
+    };
+
+    btnLearnBack.onclick = () => showScreen(screenStart);
+
+    btnStartGame.onclick = () => {
+      const list = WORDS_DATA[currentLevel][currentTopic];
+      if (!list || !list.length) {
+        alert("No words for this level/topic yet.");
+        return;
+      }
+
+      gameQuestions = shuffle(list);
+      gameIndex = 0;
+      wrongWords = [];
+      wrongCount = 0;
+      totalCount = gameQuestions.length;
+      score = 0;
+
+      bestScore = parseInt(localStorage.getItem("anfo_best_main") || "0");
+      recordLabel.textContent = "Best: " + bestScore;
+
+      statsLabel.textContent = `Wrong 0 / ${totalCount}`;
+      setAvatar("neutral");
+
+      showScreen(screenGame);
       loadGameQuestion();
-    }, 600);
-  }
+    };
 
-  function loadGameQuestion() {
-    clearInterval(timerInterval);
+    function startTimer() {
+      clearInterval(timerInterval);
+      timerBar.style.transition = "none";
+      timerBar.style.width = "100%";
 
-    optionButtons.forEach(btn => {
-      btn.classList.remove("correct", "wrong");
-      btn.disabled = false;
-    });
+      setTimeout(() => {
+        timerBar.style.transition = `width ${timeLimit}s linear`;
+        timerBar.style.width = "0%";
+      }, 50);
 
-    if (gameIndex >= gameQuestions.length) {
-      endGame();
-      return;
+      let elapsed = 0;
+      timerInterval = setInterval(() => {
+        elapsed += 0.2;
+        if (elapsed >= timeLimit) {
+          clearInterval(timerInterval);
+          handleTimeout();
+        }
+      }, 200);
     }
 
-    const q = gameQuestions[gameIndex];
-    gameWordEl.textContent = q.word;
-
-    let options = [q.meaning];
-    while (options.length < 4) {
-      const random = gameQuestions[Math.floor(Math.random() * gameQuestions.length)].meaning;
-      if (!options.includes(random)) options.push(random);
-    }
-
-    options = shuffle(options);
-
-    optionButtons.forEach((btn, i) => {
-      btn.textContent = options[i];
-      btn.onclick = () => checkAnswer(options[i] === q.meaning, q, btn);
-    });
-
-    startTimer();
-  }
-
-  function checkAnswer(isCorrect, wordObj, btn) {
-    clearInterval(timerInterval);
-    optionButtons.forEach(b => b.disabled = true);
-
-    if (isCorrect) {
-      score += 10;
-      btn.classList.add("correct");
-      setAvatar("happy");
-    } else {
-      score -= 5;
+    function handleTimeout() {
       wrongCount++;
-      wrongWords.push(wordObj);
-      btn.classList.add("wrong");
+      statsLabel.textContent = `Wrong ${wrongCount} / ${totalCount}`;
       setAvatar("sad");
-      vibrate(150);
+      vibrate(120);
+
+      const q = gameQuestions[gameIndex];
+      wrongWords.push(q);
+
+      setTimeout(() => {
+        gameIndex++;
+        loadGameQuestion();
+      }, 600);
     }
 
-    statsLabel.textContent = `Wrong ${wrongCount} / ${totalCount}`;
+    function loadGameQuestion() {
+      clearInterval(timerInterval);
 
-    setTimeout(() => {
-      gameIndex++;
-      loadGameQuestion();
-    }, 650);
-  }
-
-  function endGame() {
-    showScreen(screenResult);
-
-    finalScoreLabel.textContent = score;
-
-    if (score > bestScore) {
-      bestScore = score;
-      localStorage.setItem("anfo_best", bestScore);
-    }
-
-    finalBestLabel.textContent = bestScore;
-    finalWrongLabel.textContent = wrongCount;
-    finalTotalLabel.textContent = totalCount;
-
-    resultsList.innerHTML = "";
-    if (!wrongWords.length) {
-      resultsList.innerHTML = "<li>No wrong words. Perfect run! 🎉</li>";
-    } else {
-      wrongWords.forEach(w => {
-        const li = document.createElement("li");
-        li.textContent = `${w.word} = ${w.meaning}`;
-        resultsList.appendChild(li);
+      optionButtons.forEach(btn => {
+        btn.classList.remove("correct", "wrong");
+        btn.disabled = false;
       });
+
+      if (gameIndex >= gameQuestions.length) {
+        endGame();
+        return;
+      }
+
+      const q = gameQuestions[gameIndex];
+      gameWordEl.textContent = q.word;
+
+      let options = [q.meaning];
+      while (options.length < 4) {
+        const random = gameQuestions[Math.floor(Math.random() * gameQuestions.length)].meaning;
+        if (!options.includes(random)) options.push(random);
+      }
+
+      options = shuffle(options);
+
+      optionButtons.forEach((btn, i) => {
+        btn.textContent = options[i];
+        btn.onclick = () => checkAnswer(options[i] === q.meaning, q, btn);
+      });
+
+      startTimer();
     }
-  }
 
-  btnExitGame.onclick = () => {
-    clearInterval(timerInterval);
-    showScreen(screenStart);
-  };
+    function checkAnswer(isCorrect, wordObj, btn) {
+      clearInterval(timerInterval);
+      optionButtons.forEach(b => b.disabled = true);
 
-  btnRepeatWrong.onclick = () => {
-    if (!wrongWords.length) return alert("No wrong words.");
+      if (isCorrect) {
+        score += 10;
+        btn.classList.add("correct");
+        setAvatar(score >= bestScore && score > 0 ? "super" : "happy");
+      } else {
+        score = Math.max(0, score - 5);
+        wrongCount++;
+        wrongWords.push(wordObj);
+        btn.classList.add("wrong");
+        setAvatar("sad");
+        vibrate(150);
+      }
 
-    gameQuestions = shuffle(wrongWords);
-    wrongWords = [];
-    wrongCount = 0;
-    gameIndex = 0;
-    score = 0;
-    totalCount = gameQuestions.length;
+      statsLabel.textContent = `Wrong ${wrongCount} / ${totalCount}`;
 
-    statsLabel.textContent = `Wrong 0 / ${totalCount}`;
-    setAvatar("neutral");
+      setTimeout(() => {
+        gameIndex++;
+        loadGameQuestion();
+      }, 650);
+    }
 
-    showScreen(screenGame);
-    loadGameQuestion();
-  };
+    function endGame() {
+      showScreen(screenResult);
 
-  btnPlayAgain.onclick = () => {
-    const list = WORDS_DATA[currentLevel][currentTopic];
-    gameQuestions = shuffle(list);
-    wrongWords = [];
-    wrongCount = 0;
-    gameIndex = 0;
-    score = 0;
-    totalCount = gameQuestions.length;
+      finalScoreLabel.textContent = score;
 
-    statsLabel.textContent = `Wrong 0 / ${totalCount}`;
-    setAvatar("neutral");
+      if (score > bestScore) {
+        bestScore = score;
+        localStorage.setItem("anfo_best_main", bestScore);
+      }
 
-    showScreen(screenGame);
-    loadGameQuestion();
-  };
+      finalBestLabel.textContent = bestScore;
+      finalWrongLabel.textContent = wrongCount;
+      finalTotalLabel.textContent = totalCount;
 
-  btnBackHome.onclick = () => showScreen(screenStart);
-</script>
+      resultsList.innerHTML = "";
+      if (!wrongWords.length) {
+        resultsList.innerHTML = "<li>No wrong words. Perfect run! 🎉</li>";
+      } else {
+        wrongWords.forEach(w => {
+          const li = document.createElement("li");
+          li.textContent = `${w.word} = ${w.meaning}`;
+          resultsList.appendChild(li);
+        });
+      }
+    }
+
+    btnExitGame.onclick = () => {
+      clearInterval(timerInterval);
+      showScreen(screenStart);
+    };
+
+    btnRepeatWrong.onclick = () => {
+      if (!wrongWords.length) {
+        alert("No wrong words to repeat.");
+        return;
+      }
+
+      gameQuestions = shuffle(wrongWords);
+      wrongWords = [];
+      wrongCount = 0;
+      gameIndex = 0;
+      score = 0;
+      totalCount = gameQuestions.length;
+
+      statsLabel.textContent = `Wrong 0 / ${totalCount}`;
+      setAvatar("neutral");
+
+      showScreen(screenGame);
+      loadGameQuestion();
+    };
+
+    btnPlayAgain.onclick = () => {
+      const list = WORDS_DATA[currentLevel][currentTopic];
+      if (!list || !list.length) {
+        alert("No words for this level/topic yet.");
+        return;
+      }
+
+      gameQuestions = shuffle(list);
+      wrongWords = [];
+      wrongCount = 0;
+      gameIndex = 0;
+      score = 0;
+      totalCount = gameQuestions.length;
+
+      statsLabel.textContent = `Wrong 0 / ${totalCount}`;
+      setAvatar("neutral");
+
+      showScreen(screenGame);
+      loadGameQuestion();
+    };
+
+    btnBackHome.onclick = () => {
+      showScreen(screenStart);
+    };
+  </script>
+</body>
+</html>
