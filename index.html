@@ -743,10 +743,10 @@
     }
 
     function setAvatar(mood) {
-      let src = "assets/avatar_neutral.png";
-      if (mood === "happy") src = "assets/avatar_happy.png";
-      if (mood === "sad") src = "assets/avatar_sad.png";
-      if (mood === "super") src = "assets/avatar_super_happy.png";
+      let src = "avatar_neutral.png";
+      if (mood === "happy") src = "avatar_happy.png";
+      if (mood === "sad") src = "avatar_sad.png";
+      if (mood === "super") src = "avatar_super_happy.png";
 
       avatarGame.src = src;
       avatarGame.classList.remove("avatar-bounce");
