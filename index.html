@@ -1028,14 +1028,14 @@ function loadCategory(topic) {
 
 <!-- 3) فعال‌سازی دکمه‌ها (اینجا باید اضافه کنی) -->
 <script>
-// انتخاب سطح (Beginner / Intermediate)
+// انتخاب سطح (Beginner / Intermediate)// انتخاب سطح (Beginner / Intermediate)
 document.querySelectorAll(".level-chip").forEach(level => {
   level.addEventListener("click", () => {
     // فقط دکمه‌های سطح رو reset کن
     document.querySelectorAll(".level-chip").forEach(l => l.classList.remove("selected"));
     level.classList.add("selected");
 
-    // اینجا می‌تونی سطح انتخاب‌شده رو ذخیره کنی
+    // ذخیره سطح انتخاب‌شده
     window.currentLevel = level.getAttribute("data-level");
   });
 });
@@ -1055,6 +1055,7 @@ document.querySelectorAll(".chip").forEach(chip => {
     loadCategory(level, topic);
   });
 });
+
 </script>
 
 
