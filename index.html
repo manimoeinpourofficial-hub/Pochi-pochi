@@ -53,26 +53,26 @@
     h1, h2, h3 {
       text-align: center;
       margin-bottom: 10px;
-      color: #ff6f91;
+      color: #ff4f7a;
     }
 
     body.dark h1,
     body.dark h2,
     body.dark h3 {
-      color: #ff9ac4;
+      color: #ff7fa8;
     }
 
     .logo {
       font-size: 30px;
       font-weight: 800;
       text-align: center;
-      color: #ff6f91;
+      color: #ff4f7a;
       margin-bottom: 4px;
       letter-spacing: 0.06em;
     }
 
     body.dark .logo {
-      color: #ff9ac4;
+      color: #ff7fa8;
     }
 
     .subtitle {
@@ -98,9 +98,9 @@
       cursor: pointer;
       padding: 6px 10px;
       border-radius: 999px;
-      border: 1px solid #ffd6ec;
-      background: #fff5fb;
-      color: #ff6f91;
+      border: 1px solid #ffb3c6;
+      background: #fff0f4;
+      color: #ff4f7a;
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -128,27 +128,27 @@
       padding: 10px 18px;
       font-size: 14px;
       cursor: pointer;
-      background: linear-gradient(135deg, #ff9aa2, #ffb7b2);
+      background: linear-gradient(135deg, #ff4f7a, #ff8a5c);
       color: #fff;
       transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease, background 0.2s ease;
-      box-shadow: 0 6px 16px rgba(255, 154, 162, 0.5);
+      box-shadow: 0 6px 16px rgba(255, 79, 122, 0.55);
     }
 
     button:hover {
       transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(255, 154, 162, 0.7);
+      box-shadow: 0 10px 22px rgba(255, 79, 122, 0.7);
       filter: brightness(1.05);
     }
 
     button:active {
       transform: translateY(0);
-      box-shadow: 0 4px 12px rgba(255, 154, 162, 0.4);
+      box-shadow: 0 4px 12px rgba(255, 79, 122, 0.4);
       filter: brightness(0.98);
     }
 
     .btn-secondary {
       background: linear-gradient(135deg, #fce1ff, #ffe6f7);
-      color: #ff6f91;
+      color: #ff4f7a;
       box-shadow: 0 4px 14px rgba(255, 182, 193, 0.4);
     }
 
@@ -180,22 +180,23 @@
       flex-wrap: wrap;
     }
 
+    /* موضوع‌ها (Daily, Food, ...) */
     .chip {
       padding: 7px 14px;
       background: #ffeef7;
       border-radius: 999px;
       cursor: pointer;
-      color: #ff6f91;
-      border: 1px solid #ffd6ec;
+      color: #ff4f7a;
+      border: 1px solid #ffb3c6;
       font-size: 13px;
       transition: 0.12s ease;
     }
 
     .chip.selected {
-      background: linear-gradient(135deg, #ff9aa2, #ffb7b2);
+      background: linear-gradient(135deg, #ff4f7a, #ff8a5c);
       color: #fff;
-      border-color: #ff9aa2;
-      box-shadow: 0 4px 14px rgba(255, 154, 162, 0.6);
+      border-color: #ff4f7a;
+      box-shadow: 0 4px 14px rgba(255, 79, 122, 0.7);
     }
 
     body.dark .chip {
@@ -205,10 +206,42 @@
     }
 
     body.dark .chip.selected {
-      background: linear-gradient(135deg, #ff6f91, #ff9ac4);
-      border-color: #ff6f91;
+      background: linear-gradient(135deg, #ff4f7a, #ff9ac4);
+      border-color: #ff4f7a;
       color: #fff;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.9);
+    }
+
+    /* سطح‌ها (Beginner / Intermediate) */
+    .level-chip {
+      padding: 7px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 13px;
+      border: 1px solid #ffc857;
+      background: #fff9e6;
+      color: #c76b00;
+      transition: 0.12s ease;
+    }
+
+    .level-chip.selected {
+      background: linear-gradient(135deg, #ffc857, #ff9f1c);
+      color: #fff;
+      border-color: #ff9f1c;
+      box-shadow: 0 4px 14px rgba(255, 159, 28, 0.7);
+    }
+
+    body.dark .level-chip {
+      background: #2b2738;
+      border-color: #ffb347;
+      color: #ffd27f;
+    }
+
+    body.dark .level-chip.selected {
+      background: linear-gradient(135deg, #ffb347, #ff9f1c);
+      border-color: #ffb347;
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.9);
     }
 
     .actions-row {
@@ -238,7 +271,7 @@
     #learn-word {
       font-size: 28px;
       font-weight: 700;
-      color: #ff6f91;
+      color: #ff4f7a;
       margin-bottom: 8px;
     }
 
@@ -317,7 +350,7 @@
       text-align: center;
       font-size: 26px;
       font-weight: 700;
-      color: #ff6f91;
+      color: #ff4f7a;
       margin-bottom: 14px;
       animation: popIn 0.3s ease;
     }
@@ -340,7 +373,7 @@
 
     .option {
       background: #fff5fb;
-      color: #ff6f91;
+      color: #ff4f7a;
       border-radius: 16px;
       padding: 10px 8px;
       font-size: 14px;
@@ -370,29 +403,29 @@
 
     .option.correct {
       background: #e3ffe9;
-      border-color: #7bd88f;
-      color: #2f7d3b;
-      box-shadow: 0 6px 18px rgba(123, 216, 143, 0.7);
+      border-color: #2ecc71;
+      color: #1e7a3a;
+      box-shadow: 0 6px 18px rgba(46, 204, 113, 0.7);
     }
 
     body.dark .option.correct {
       background: #1f3a2a;
-      border-color: #7bd88f;
+      border-color: #2ecc71;
       color: #a8f5b8;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.9);
     }
 
     .option.wrong {
       background: #ffe3e8;
-      border-color: #ff9aa2;
+      border-color: #ff4f7a;
       color: #c0392b;
-      box-shadow: 0 6px 18px rgba(255, 154, 162, 0.7);
+      box-shadow: 0 6px 18px rgba(255, 79, 122, 0.7);
       animation: shake 0.25s ease;
     }
 
     body.dark .option.wrong {
       background: #3a1f26;
-      border-color: #ff6f91;
+      border-color: #ff4f7a;
       color: #ffb3c4;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.9);
     }
@@ -423,12 +456,12 @@
     #timer-bar {
       height: 100%;
       width: 100%;
-      background: linear-gradient(90deg, #ff9aa2, #ffb7b2, #ffdac1);
+      background: linear-gradient(90deg, #ff4f7a, #ff8a5c, #ffc857);
       transition: width linear;
     }
 
     body.dark #timer-bar {
-      background: linear-gradient(90deg, #ff6f91, #ff9ac4, #ffc3e0);
+      background: linear-gradient(90deg, #ff4f7a, #ff9ac4, #ffc3e0);
     }
 
     #results-list {
@@ -481,8 +514,8 @@
 
       <h3>Choose level</h3>
       <div class="chips" id="level-chips">
-        <div class="chip selected" data-level="beginner">Beginner</div>
-        <div class="chip" data-level="intermediate">Intermediate</div>
+        <div class="chip level-chip selected" data-level="beginner">Beginner</div>
+        <div class="chip level-chip" data-level="intermediate">Intermediate</div>
       </div>
 
       <h3>Choose topic</h3>
@@ -490,10 +523,10 @@
         <div class="chip selected" data-topic="daily">Daily</div>
         <div class="chip" data-topic="food">Food</div>
         <div class="chip" data-topic="travel">Travel</div>
-       <div class="chip" data-topic="home">Home</div>
+        <div class="chip" data-topic="home">Home</div>
         <div class="chip" data-topic="school">School</div>
         <div class="chip" data-topic="nature">Nature</div>
-       <div class="chip" data-topic="medical">Medical</div> 
+        <div class="chip" data-topic="medical">Medical</div>
       </div>
 
       <div class="actions-row">
@@ -568,6 +601,9 @@
       </div>
     </div>
   </div>
+</body>
+</html>
+
 
   
 
