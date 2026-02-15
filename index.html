@@ -1020,22 +1020,19 @@ const WORDS_DATA = {
   </script>
 
 <script>
-function loadCategory(topic) {
-  const words = WORDS_DATA.beginner[topic];
+function loadCategory(level, topic) {
+  const words = WORDS_DATA[level][topic];
   console.log(words);
 }
 </script>
 
-<!-- 3) فعال‌سازی دکمه‌ها (اینجا باید اضافه کنی) -->
 <script>
-// انتخاب سطح (Beginner / Intermediate)// انتخاب سطح (Beginner / Intermediate)
+// انتخاب سطح (Beginner / Intermediate)
 document.querySelectorAll(".level-chip").forEach(level => {
   level.addEventListener("click", () => {
-    // فقط دکمه‌های سطح رو reset کن
     document.querySelectorAll(".level-chip").forEach(l => l.classList.remove("selected"));
     level.classList.add("selected");
 
-    // ذخیره سطح انتخاب‌شده
     window.currentLevel = level.getAttribute("data-level");
   });
 });
@@ -1043,19 +1040,15 @@ document.querySelectorAll(".level-chip").forEach(level => {
 // انتخاب موضوع (Daily / Food / ...)
 document.querySelectorAll(".chip").forEach(chip => {
   chip.addEventListener("click", () => {
-    // فقط دکمه‌های موضوع رو reset کن
     document.querySelectorAll(".chip").forEach(c => c.classList.remove("selected"));
     chip.classList.add("selected");
 
-    // سطح انتخاب‌شده رو بخون
-    const level = window.currentLevel || "beginner"; // پیش‌فرض beginner
+    const level = window.currentLevel || "beginner";
     const topic = chip.getAttribute("data-topic");
 
-    // لود کردن کلمات
     loadCategory(level, topic);
   });
 });
-
 </script>
 
 
